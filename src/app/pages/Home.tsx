@@ -376,23 +376,35 @@ export function Home() {
                   </div>
 
                   {/* Κουμπί Αναζήτησης */}
-                  <button
-                    onClick={() => {
-                      navigate('/fleet', {
-                        state: {
-                          categoryFilter: heroBooking.carType || undefined,
-                          transmission:   heroBooking.transmission || undefined,
-                          fuel:           heroBooking.fuelType || undefined,
-                          passengers:     heroBooking.passengers || undefined,
-                        },
-                      });
-                    }}
-                    className="group relative w-full overflow-hidden bg-amber-600 text-white px-6 py-4 rounded-lg hover:bg-amber-700 hover:shadow-2xl hover:shadow-amber-600/40 transition-all hover:scale-[1.02] font-semibold text-base tracking-wider uppercase flex items-center justify-center gap-3 mt-2 shadow-lg shadow-amber-600/50"
-                  >
-                    <span className="relative z-10">{t("home.booking.search")}</span>
-                    <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                  </button>
+                  {(() => {
+                    const heroValid = !!dateRange?.from && !!dateRange?.to;
+                    return (
+                      <button
+                        disabled={!heroValid}
+                        onClick={() => {
+                          navigate('/fleet', {
+                            state: {
+                              categoryFilter: heroBooking.carType || undefined,
+                              transmission:   heroBooking.transmission || undefined,
+                              fuel:           heroBooking.fuelType || undefined,
+                              passengers:     heroBooking.passengers || undefined,
+                            },
+                          });
+                        }}
+                        className={`group relative w-full overflow-hidden px-6 py-4 rounded-lg transition-all font-semibold text-base tracking-wider uppercase flex items-center justify-center gap-3 mt-2 ${
+                          heroValid
+                            ? "bg-amber-600 text-white hover:bg-amber-700 hover:shadow-2xl hover:shadow-amber-600/40 hover:scale-[1.02] shadow-lg shadow-amber-600/50 cursor-pointer"
+                            : "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
+                        }`}
+                      >
+                        <span className="relative z-10">{t("home.booking.search")}</span>
+                        <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                        {heroValid && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                        )}
+                      </button>
+                    );
+                  })()}
                 </div>
               </div>
             </motion.div>

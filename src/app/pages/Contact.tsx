@@ -78,7 +78,7 @@ export function Contact() {
     });
   };
 
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
+  const emailValid = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(formData.email.trim());
   const phoneDigits = formData.phone.replace(/\D/g, "");
   const phoneValid = phoneDigits.length === 0 || phoneDigits.length >= 8;
   const isFormValid =
@@ -258,9 +258,14 @@ export function Contact() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900"
+                    className={`w-full px-4 py-3 bg-white border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900 ${
+                      formData.email && !emailValid ? "border-red-400" : "border-amber-200"
+                    }`}
                     placeholder="email@example.com"
                   />
+                  {formData.email && !emailValid && (
+                    <p className="mt-1 text-xs text-red-600">Μη έγκυρο email (π.χ. name@example.com)</p>
+                  )}
                 </div>
 
                 <div>
@@ -272,9 +277,14 @@ export function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 bg-white border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900"
+                    className={`w-full px-4 py-3 bg-white border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900 ${
+                      formData.phone && !phoneValid ? "border-red-400" : "border-amber-200"
+                    }`}
                     placeholder="+30 6912345678"
                   />
+                  {formData.phone && !phoneValid && (
+                    <p className="mt-1 text-xs text-red-600">Συμπληρώστε έγκυρο τηλέφωνο (≥8 ψηφία)</p>
+                  )}
                 </div>
 
                 <div>
