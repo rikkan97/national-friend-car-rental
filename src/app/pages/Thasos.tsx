@@ -34,7 +34,6 @@ export function Thasos() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const cars = [
-    { id: "1",  name: "KIA PICANTO",            category: "A",  price: 35 },
     { id: "2",  name: "RENAULT TWINGO",         category: "A",  price: 35 },
     { id: "3",  name: "TOYOTA AYGO",            category: "A",  price: 35 },
     { id: "4",  name: "TOYOTA AYGO NEW",        category: "A",  price: 38 },
@@ -45,12 +44,15 @@ export function Thasos() {
     { id: "9",  name: "KIA PICANTO Automatic",  category: "B1", price: 55 },
     { id: "10", name: "HYUNDAI i20",            category: "C",  price: 45 },
     { id: "11", name: "PEUGEOT 207",            category: "C",  price: 45 },
-    { id: "12", name: "RENAULT CLIO",           category: "C",  price: 45 },
-    { id: "13", name: "RENAULT CLIO NEW",       category: "C",  price: 50 },
+    { id: "13", name: "RENAULT CLIO",           category: "C",  price: 50 },
     { id: "14", name: "DACIA SANDERO",          category: "C",  price: 45 },
+    { id: "18", name: "MG3",                    category: "C",  price: 48 },
     { id: "15", name: "FIAT DOBLO",             category: "D",  price: 55 },
     { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  price: 65 },
     { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", price: 75 },
+    { id: "19", name: "MG ZS MAX",              category: "G2", price: 70 },
+    { id: "20", name: "NISSAN JUKE",            category: "G2", price: 70 },
+    { id: "21", name: "MG3 HYBRID+",            category: "G2", price: 75 },
   ];
 
   const beaches = [

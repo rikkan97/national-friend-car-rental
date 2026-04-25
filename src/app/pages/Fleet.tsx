@@ -9,6 +9,8 @@ import { TransmissionIcon } from "../components/TransmissionIcon";
 import { EngineIcon } from "../components/EngineIcon";
 import { useT, useTv } from "../../i18n/LanguageContext";
 
+type RoadType = "onlyRoad" | "beachOrMountain" | "forBeaches";
+
 interface CarType {
   id: string;
   name: string;
@@ -23,6 +25,7 @@ interface CarType {
   fuel: string;
   rating: number;
   features: string[];
+  roadType: RoadType;
 }
 
 export function Fleet() {
@@ -66,9 +69,11 @@ export function Fleet() {
     { id: "B",  name: t("home.booking.catB") },
     { id: "B1", name: t("home.booking.catB1") },
     { id: "C",  name: t("home.booking.catC") },
+    { id: "C1", name: t("home.booking.catC1") },
     { id: "D",  name: t("home.booking.catD") },
     { id: "G",  name: t("home.booking.catG") },
     { id: "G1", name: t("home.booking.catG1") },
+    { id: "G2", name: t("home.booking.catG2") },
   ];
 
   const categoryLabel: Record<string, string> = Object.fromEntries(categories.map(c => [c.id, c.name]));
@@ -111,23 +116,25 @@ export function Fleet() {
   const standardFeatures = ["Κλιματισμός", "Ηλεκτρικά Παράθυρα", "Radio / CD", "Κεντρικό Κλείδωμα", "Υδραυλικό Τιμόνι"];
 
   const cars: CarType[] = [
-    { id: "1",  name: "KIA PICANTO",              category: "A",  image: carImages.kiaPicanto,      price: 35, passengers: 4, luggage: 3, engine: "999cc",  doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures },
-    { id: "2",  name: "RENAULT TWINGO",           category: "A",  image: carImages.renaultTwingo,   price: 35, passengers: 4, luggage: 3, engine: "1200cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures },
-    { id: "3",  name: "TOYOTA AYGO",              category: "A",  image: carImages.toyotaAygo,      price: 35, passengers: 4, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures },
-    { id: "4",  name: "TOYOTA AYGO NEW",          category: "A",  image: carImages.toyotaAygoNew,   price: 38, passengers: 4, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "5",  name: "HYUNDAI i10",              category: "B",  image: carImages.hyundaiI10,      price: 40, passengers: 5, luggage: 3, engine: "1086cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "6",  name: "KIA PICANTO NEW",          category: "B",  image: carImages.kiaPicantoNew,   price: 45, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures },
-    { id: "7",  name: "NISSAN MICRA",             category: "B",  image: carImages.nissanMicra,     price: 40, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "8",  name: "HYUNDAI i10 Automatic",    category: "B1", image: carImages.hyundaiI10,      price: 50, passengers: 5, luggage: 3, engine: "1086cc", doors: 5, transmission: "Αυτόματο",    fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "9",  name: "KIA PICANTO Automatic",    category: "B1", image: carImages.kiaPicantoAuto,  price: 55, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Αυτόματο",    fuel: "Βενζίνη", rating: 5,   features: standardFeatures },
-    { id: "10", name: "HYUNDAI i20",              category: "C",  image: carImages.hyundaiI20,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "11", name: "PEUGEOT 207",              category: "C",  image: carImages.peugeot208,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "12", name: "RENAULT CLIO",             category: "C",  image: carImages.renaultClio,     price: 45, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "13", name: "RENAULT CLIO NEW",         category: "C",  image: carImages.renaultClioNew,  price: 50, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures },
-    { id: "14", name: "DACIA SANDERO",            category: "C",  image: carImages.renaultClio,     price: 45, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "15", name: "FIAT DOBLO",               category: "D",  image: carImages.fiatDoblo,       price: 55, passengers: 7, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "16", name: "DACIA DUSTER 4x2",         category: "G",  image: carImages.daciaDuster,     price: 65, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures },
-    { id: "17", name: "SUZUKI JIMNY 4x4",         category: "G1", image: carImages.suzukiJimny,     price: 75, passengers: 4, luggage: 2, engine: "1300cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures },
+    { id: "2",  name: "RENAULT TWINGO",           category: "A",  image: carImages.renaultTwingo,   price: 35, passengers: 4, luggage: 3, engine: "1200cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "3",  name: "TOYOTA AYGO",              category: "A",  image: carImages.toyotaAygo,      price: 35, passengers: 4, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "4",  name: "TOYOTA AYGO NEW",          category: "A",  image: carImages.toyotaAygoNew,   price: 38, passengers: 4, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "5",  name: "HYUNDAI i10",              category: "B",  image: carImages.hyundaiI10,      price: 40, passengers: 5, luggage: 3, engine: "1086cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "6",  name: "KIA PICANTO NEW",          category: "B",  image: carImages.kiaPicantoNew,   price: 45, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
+    { id: "7",  name: "NISSAN MICRA",             category: "B",  image: carImages.nissanMicra,     price: 40, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "8",  name: "HYUNDAI i10 Automatic",    category: "B1", image: carImages.hyundaiI10,      price: 50, passengers: 5, luggage: 3, engine: "1086cc", doors: 5, transmission: "Αυτόματο",    fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "9",  name: "KIA PICANTO Automatic",    category: "B1", image: carImages.kiaPicantoAuto,  price: 55, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Αυτόματο",    fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
+    { id: "10", name: "HYUNDAI i20",              category: "C",  image: carImages.hyundaiI20,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "11", name: "PEUGEOT 207",              category: "C",  image: carImages.peugeot208,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "13", name: "RENAULT CLIO",             category: "C",  image: carImages.renaultClioNew,  price: 50, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
+    { id: "14", name: "DACIA SANDERO",            category: "C",  image: carImages.renaultClio,     price: 45, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "18", name: "MG3",                      category: "C",  image: carImages.hyundaiI20,      price: 48, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "15", name: "FIAT DOBLO",               category: "D",  image: carImages.fiatDoblo,       price: 55, passengers: 7, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "16", name: "DACIA DUSTER 4x2",         category: "G",  image: carImages.daciaDuster,     price: 65, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "beachOrMountain" },
+    { id: "17", name: "SUZUKI JIMNY 4x4",         category: "G1", image: carImages.suzukiJimny,     price: 75, passengers: 4, luggage: 2, engine: "1300cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "beachOrMountain" },
+    { id: "19", name: "MG ZS MAX",                category: "G2", image: carImages.daciaDuster,     price: 70, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
+    { id: "20", name: "NISSAN JUKE",              category: "G2", image: carImages.daciaDuster,     price: 70, passengers: 5, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
+    { id: "21", name: "MG3 HYBRID+",              category: "G2", image: carImages.daciaDuster,     price: 75, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Αυτόματο",    fuel: "Υβριδικό", rating: 5,   features: standardFeatures, roadType: "forBeaches" },
   ];
 
   // Filter logic
@@ -310,12 +317,12 @@ export function Fleet() {
               className="mt-10 flex items-center justify-center gap-6 md:gap-12 text-white"
             >
               <div className="text-center">
-                <div className="text-2xl md:text-4xl font-bold text-amber-400">17</div>
+                <div className="text-2xl md:text-4xl font-bold text-amber-400">{cars.length}</div>
                 <div className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/60 mt-1">{t("fleet.hero.statModels")}</div>
               </div>
               <div className="h-10 w-px bg-amber-400/30" />
               <div className="text-center">
-                <div className="text-2xl md:text-4xl font-bold text-amber-400">7</div>
+                <div className="text-2xl md:text-4xl font-bold text-amber-400">{categories.length}</div>
                 <div className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/60 mt-1">{t("fleet.hero.statCategories")}</div>
               </div>
               <div className="h-10 w-px bg-amber-400/30" />
@@ -656,6 +663,17 @@ export function Fleet() {
                       <p className="text-xs text-gray-600">{t("details.doors")}</p>
                     </div>
                     <p className="text-lg font-bold text-gray-900">{detailsModalCar.doors}</p>
+                  </div>
+                </div>
+
+                {/* Road Type */}
+                <div className="mb-6 p-4 rounded-xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-white flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0">
+                    <Car size={20} className="text-amber-600" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-amber-700 font-semibold">{t("fleet.roadType.label")}</p>
+                    <p className="text-sm sm:text-base font-bold text-gray-800">{t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
                   </div>
                 </div>
 

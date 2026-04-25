@@ -54,7 +54,6 @@ export function Home() {
   const [selectedCar, setSelectedCar] = useState<{ id: string; name: string; price: number } | null>(null);
 
   const cars = [
-    { id: "1",  name: "KIA PICANTO",            category: "A",  price: 35 },
     { id: "2",  name: "RENAULT TWINGO",         category: "A",  price: 35 },
     { id: "3",  name: "TOYOTA AYGO",            category: "A",  price: 35 },
     { id: "4",  name: "TOYOTA AYGO NEW",        category: "A",  price: 38 },
@@ -65,28 +64,31 @@ export function Home() {
     { id: "9",  name: "KIA PICANTO Automatic",  category: "B1", price: 55 },
     { id: "10", name: "HYUNDAI i20",            category: "C",  price: 45 },
     { id: "11", name: "PEUGEOT 207",            category: "C",  price: 45 },
-    { id: "12", name: "RENAULT CLIO",           category: "C",  price: 45 },
-    { id: "13", name: "RENAULT CLIO NEW",       category: "C",  price: 50 },
+    { id: "13", name: "RENAULT CLIO",           category: "C",  price: 50 },
     { id: "14", name: "DACIA SANDERO",          category: "C",  price: 45 },
+    { id: "18", name: "MG3",                    category: "C",  price: 48 },
     { id: "15", name: "FIAT DOBLO",             category: "D",  price: 55 },
     { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  price: 65 },
     { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", price: 75 },
+    { id: "19", name: "MG ZS MAX",              category: "G2", price: 70 },
+    { id: "20", name: "NISSAN JUKE",            category: "G2", price: 70 },
+    { id: "21", name: "MG3 HYBRID+",            category: "G2", price: 75 },
   ];
 
   const popularCarFeatures = ["Κλιματισμός", "Ηλεκτρικά Παράθυρα", "Radio / CD", "Κεντρικό Κλείδωμα", "Υδραυλικό Τιμόνι"];
 
   const popularCars: CarType[] = [
     {
-      id: "1",
-      name: "KIA PICANTO",
-      category: "A",
-      image: "https://www.national-friend.gr/media/k2/items/cache/2fa67f482133f1c934235b73c2a03954_M.jpg",
-      price: 35,
-      passengers: 4,
+      id: "9",
+      name: "KIA PICANTO Automatic",
+      category: "B1",
+      image: "https://www.national-friend.gr/media/k2/items/cache/e31ace2a15a7c70645ad83df9ecd43b0_M.jpg",
+      price: 55,
+      passengers: 5,
       luggage: 3,
-      engine: "999cc",
+      engine: "1200cc",
       doors: 5,
-      transmission: "Χειροκίνητο",
+      transmission: "Αυτόματο",
       fuel: "Βενζίνη",
       rating: 5,
       features: popularCarFeatures
@@ -107,18 +109,18 @@ export function Home() {
       features: popularCarFeatures
     },
     {
-      id: "9",
-      name: "KIA PICANTO Automatic",
-      category: "B1",
-      image: "https://www.national-friend.gr/media/k2/items/cache/e31ace2a15a7c70645ad83df9ecd43b0_M.jpg",
-      price: 55,
-      passengers: 5,
+      id: "4",
+      name: "TOYOTA AYGO NEW",
+      category: "A",
+      image: "https://www.national-friend.gr/media/k2/items/cache/077ab55046ce80eaf9a3ddea999597ca_M.jpg",
+      price: 38,
+      passengers: 4,
       luggage: 3,
-      engine: "1200cc",
+      engine: "1000cc",
       doors: 5,
-      transmission: "Αυτόματο",
+      transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
-      rating: 5,
+      rating: 4.9,
       features: popularCarFeatures
     },
     {
@@ -185,9 +187,11 @@ export function Home() {
     B:  t("home.booking.catB"),
     B1: t("home.booking.catB1"),
     C:  t("home.booking.catC"),
+    C1: t("home.booking.catC1"),
     D:  t("home.booking.catD"),
     G:  t("home.booking.catG"),
     G1: t("home.booking.catG1"),
+    G2: t("home.booking.catG2"),
   };
 
   const benefits = [
@@ -282,9 +286,11 @@ export function Home() {
                       <option value="B">{t("home.booking.catB")}</option>
                       <option value="B1">{t("home.booking.catB1")}</option>
                       <option value="C">{t("home.booking.catC")}</option>
+                      <option value="C1">{t("home.booking.catC1")}</option>
                       <option value="D">{t("home.booking.catD")}</option>
                       <option value="G">{t("home.booking.catG")}</option>
                       <option value="G1">{t("home.booking.catG1")}</option>
+                      <option value="G2">{t("home.booking.catG2")}</option>
                     </select>
                   </div>
 
