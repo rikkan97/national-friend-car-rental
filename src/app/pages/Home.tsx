@@ -59,12 +59,12 @@ export function Home() {
   const cars = [
     { id: "2",  name: "RENAULT TWINGO",         category: "A",  price: 35 },
     { id: "3",  name: "TOYOTA AYGO",            category: "A",  price: 35 },
-    { id: "4",  name: "TOYOTA AYGO NEW",        category: "A",  price: 38 },
+    { id: "4",  name: "TOYOTA AYGO",        category: "A",  price: 38 },
     { id: "5",  name: "HYUNDAI i10",            category: "B",  price: 40 },
-    { id: "6",  name: "KIA PICANTO NEW",        category: "B",  price: 45 },
+    { id: "6",  name: "KIA PICANTO",        category: "B",  price: 45 },
     { id: "7",  name: "NISSAN MICRA",           category: "B",  price: 40 },
-    { id: "8",  name: "HYUNDAI i10 Automatic",  category: "B1", price: 50 },
-    { id: "9",  name: "KIA PICANTO Automatic",  category: "B1", price: 55 },
+    { id: "8",  name: "HYUNDAI i10",  category: "B1", price: 50 },
+    { id: "9",  name: "KIA PICANTO",  category: "B1", price: 55 },
     { id: "10", name: "HYUNDAI i20",            category: "C",  price: 45 },
     { id: "11", name: "PEUGEOT 207",            category: "C",  price: 45 },
     { id: "13", name: "RENAULT CLIO",           category: "C",  price: 50 },
@@ -83,7 +83,7 @@ export function Home() {
   const popularCars: CarType[] = [
     {
       id: "9",
-      name: "KIA PICANTO Automatic",
+      name: "KIA PICANTO",
       category: "B1",
       image: "https://www.national-friend.gr/media/k2/items/cache/e31ace2a15a7c70645ad83df9ecd43b0_M.jpg",
       price: 55,
@@ -115,7 +115,7 @@ export function Home() {
     },
     {
       id: "4",
-      name: "TOYOTA AYGO NEW",
+      name: "TOYOTA AYGO",
       category: "A",
       image: "https://www.national-friend.gr/media/k2/items/cache/077ab55046ce80eaf9a3ddea999597ca_M.jpg",
       price: 38,
