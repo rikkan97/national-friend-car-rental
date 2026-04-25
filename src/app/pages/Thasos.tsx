@@ -65,7 +65,7 @@ export function Thasos() {
   const villages = [
     { name: t("thasos.villages.v1Name"), description: t("thasos.villages.v1Desc"), highlight: t("thasos.villages.v1High"), image: limenariaImage, objectPosition: "center",     zoom: 1,    origin: "center" },
     { name: t("thasos.villages.v2Name"), description: t("thasos.villages.v2Desc"), highlight: t("thasos.villages.v2High"), image: panagiaImage,   objectPosition: "center",     zoom: 1.4,  origin: "center" },
-    { name: t("thasos.villages.v3Name"), description: t("thasos.villages.v3Desc"), highlight: t("thasos.villages.v3High"), image: theologosImage, objectPosition: "center",     zoom: 1.4,  origin: "center" },
+    { name: t("thasos.villages.v3Name"), description: t("thasos.villages.v3Desc"), highlight: t("thasos.villages.v3High"), image: theologosImage, objectPosition: "center",     zoom: 1.55, origin: "center" },
     { name: t("thasos.villages.v4Name"), description: t("thasos.villages.v4Desc"), highlight: t("thasos.villages.v4High"), image: limenasImage,   objectPosition: "center",     zoom: 1,    origin: "center" },
     { name: t("thasos.villages.v5Name"), description: t("thasos.villages.v5Desc"), highlight: t("thasos.villages.v5High"), image: potosImage,     objectPosition: "center top", zoom: 1.15, origin: "center top" },
   ];
