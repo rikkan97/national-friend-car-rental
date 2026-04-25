@@ -342,26 +342,54 @@ export function Fleet() {
                 type="button"
                 onClick={() => setFiltersOpen((v) => !v)}
                 aria-expanded={filtersOpen}
-                className="w-full lg:cursor-default flex items-center justify-between flex-wrap gap-2 px-4 sm:px-7 py-3 sm:py-4 border-b border-amber-100/80 bg-gradient-to-r from-amber-50/50 to-transparent rounded-t-2xl text-left"
+                className="w-full lg:cursor-default px-4 sm:px-7 py-3.5 sm:py-4 border-b border-amber-100/80 bg-gradient-to-r from-amber-50/50 to-transparent rounded-t-2xl text-left"
               >
-                <div className="flex items-center gap-3">
-                  <SlidersHorizontal size={16} className="text-amber-600" strokeWidth={2} />
-                  <span className="text-[11px] tracking-[0.3em] text-amber-700 uppercase font-semibold">{t("fleet.filters.label")}</span>
+                {/* Mobile: stacked premium layout */}
+                <div className="flex items-center justify-between gap-3 lg:hidden">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-100 to-amber-50 border border-amber-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <SlidersHorizontal size={15} className="text-amber-600" strokeWidth={2.2} />
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-[11px] tracking-[0.25em] text-amber-700 uppercase font-bold leading-tight">
+                        {t("fleet.filters.label")}
+                      </span>
+                      <span className="text-[11px] text-gray-500 leading-tight mt-0.5">
+                        <span className="font-bold text-amber-600">{filteredCars.length}</span> {t("fleet.filters.available")}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <span
+                      onClick={(e) => { e.stopPropagation(); clearAllFilters(); }}
+                      className="text-[10px] tracking-[0.15em] uppercase text-amber-700 hover:text-amber-900 font-semibold px-2.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 cursor-pointer"
+                    >
+                      {t("fleet.filters.clear")}
+                    </span>
+                    <ChevronDown
+                      size={18}
+                      className={`text-amber-600 transition-transform ${filtersOpen ? "rotate-180" : ""}`}
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 sm:gap-5 flex-wrap">
-                  <span className="text-xs sm:text-sm text-gray-600">
-                    <span className="font-bold text-amber-600">{filteredCars.length}</span> {t("fleet.filters.available")}
-                  </span>
-                  <span
-                    onClick={(e) => { e.stopPropagation(); clearAllFilters(); }}
-                    className="text-xs tracking-[0.15em] uppercase text-amber-700 hover:text-amber-900 font-semibold transition-colors sm:border-l border-amber-200 sm:pl-5 cursor-pointer"
-                  >
-                    {t("fleet.filters.clear")}
-                  </span>
-                  <ChevronDown
-                    size={18}
-                    className={`text-amber-600 lg:hidden transition-transform ${filtersOpen ? "rotate-180" : ""}`}
-                  />
+
+                {/* Desktop: single row */}
+                <div className="hidden lg:flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-3">
+                    <SlidersHorizontal size={16} className="text-amber-600" strokeWidth={2} />
+                    <span className="text-[11px] tracking-[0.3em] text-amber-700 uppercase font-semibold">{t("fleet.filters.label")}</span>
+                  </div>
+                  <div className="flex items-center gap-5">
+                    <span className="text-sm text-gray-600">
+                      <span className="font-bold text-amber-600">{filteredCars.length}</span> {t("fleet.filters.available")}
+                    </span>
+                    <span
+                      onClick={(e) => { e.stopPropagation(); clearAllFilters(); }}
+                      className="text-xs tracking-[0.15em] uppercase text-amber-700 hover:text-amber-900 font-semibold transition-colors border-l border-amber-200 pl-5 cursor-pointer"
+                    >
+                      {t("fleet.filters.clear")}
+                    </span>
+                  </div>
                 </div>
               </button>
 
