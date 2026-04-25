@@ -8,6 +8,10 @@ import { useLocation } from "react-router";
 import { TransmissionIcon } from "../components/TransmissionIcon";
 import { EngineIcon } from "../components/EngineIcon";
 import { useT, useTv } from "../../i18n/LanguageContext";
+import mg3Image from "figma:asset/mg3.jpg";
+import mgZsImage from "figma:asset/mg-zs.jpg";
+import nissanJukeImage from "figma:asset/nissan-juke.jpg";
+import mg3HybridImage from "figma:asset/mg3-hybrid.jpg";
 
 type RoadType = "onlyRoad" | "beachOrMountain" | "forBeaches";
 
@@ -128,13 +132,13 @@ export function Fleet() {
     { id: "11", name: "PEUGEOT 207",              category: "C",  image: carImages.peugeot208,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
     { id: "13", name: "RENAULT CLIO",             category: "C",  image: carImages.renaultClioNew,  price: 50, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
     { id: "14", name: "DACIA SANDERO",            category: "C",  image: carImages.renaultClio,     price: 45, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "18", name: "MG3",                      category: "C",  image: carImages.hyundaiI20,      price: 48, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "18", name: "MG3",                      category: "C",  image: mg3Image,                  price: 48, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
     { id: "15", name: "FIAT DOBLO",               category: "D",  image: carImages.fiatDoblo,       price: 55, passengers: 7, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
     { id: "16", name: "DACIA DUSTER 4x2",         category: "G",  image: carImages.daciaDuster,     price: 65, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "beachOrMountain" },
     { id: "17", name: "SUZUKI JIMNY 4x4",         category: "G1", image: carImages.suzukiJimny,     price: 75, passengers: 4, luggage: 2, engine: "1300cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "beachOrMountain" },
-    { id: "19", name: "MG ZS MAX",                category: "G2", image: carImages.daciaDuster,     price: 70, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
-    { id: "20", name: "NISSAN JUKE",              category: "G2", image: carImages.daciaDuster,     price: 70, passengers: 5, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
-    { id: "21", name: "MG3 HYBRID+",              category: "G2", image: carImages.daciaDuster,     price: 75, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Αυτόματο",    fuel: "Υβριδικό", rating: 5,   features: standardFeatures, roadType: "forBeaches" },
+    { id: "19", name: "MG ZS MAX",                category: "G2", image: mgZsImage,                 price: 70, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
+    { id: "20", name: "NISSAN JUKE",              category: "G2", image: nissanJukeImage,           price: 70, passengers: 5, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
+    { id: "21", name: "MG3 HYBRID+",              category: "G2", image: mg3HybridImage,            price: 75, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Αυτόματο",    fuel: "Υβριδικό", rating: 5,   features: standardFeatures, roadType: "forBeaches" },
   ];
 
   // Filter logic
