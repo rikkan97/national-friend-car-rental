@@ -64,8 +64,8 @@ export function Thasos() {
 
   const villages = [
     { name: t("thasos.villages.v1Name"), description: t("thasos.villages.v1Desc"), highlight: t("thasos.villages.v1High"), image: limenariaImage, objectPosition: "center",     zoom: 1,    origin: "center" },
-    { name: t("thasos.villages.v2Name"), description: t("thasos.villages.v2Desc"), highlight: t("thasos.villages.v2High"), image: panagiaImage,   objectPosition: "center",     zoom: 1,    origin: "center" },
-    { name: t("thasos.villages.v3Name"), description: t("thasos.villages.v3Desc"), highlight: t("thasos.villages.v3High"), image: theologosImage, objectPosition: "center",     zoom: 1,    origin: "center" },
+    { name: t("thasos.villages.v2Name"), description: t("thasos.villages.v2Desc"), highlight: t("thasos.villages.v2High"), image: panagiaImage,   objectPosition: "center",     zoom: 1.4,  origin: "center" },
+    { name: t("thasos.villages.v3Name"), description: t("thasos.villages.v3Desc"), highlight: t("thasos.villages.v3High"), image: theologosImage, objectPosition: "center",     zoom: 1.4,  origin: "center" },
     { name: t("thasos.villages.v4Name"), description: t("thasos.villages.v4Desc"), highlight: t("thasos.villages.v4High"), image: limenasImage,   objectPosition: "center",     zoom: 1,    origin: "center" },
     { name: t("thasos.villages.v5Name"), description: t("thasos.villages.v5Desc"), highlight: t("thasos.villages.v5High"), image: potosImage,     objectPosition: "center top", zoom: 1.15, origin: "center top" },
   ];
@@ -392,12 +392,11 @@ export function Thasos() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: index * 0.1 }}
-                  onMouseEnter={() => setActiveVillage(index)}
                   onClick={() => setActiveVillage(index)}
-                  className={`bg-gradient-to-r from-amber-50 to-white p-6 rounded-2xl border transition-all cursor-pointer hover:shadow-lg hover:-translate-x-2 ${
+                  className={`bg-gradient-to-r from-amber-50 to-white p-6 rounded-2xl border cursor-pointer sm:transition-all sm:hover:shadow-lg sm:hover:-translate-x-2 ${
                     activeVillage === index
-                      ? "border-amber-500 shadow-lg -translate-x-2"
-                      : "border-amber-200 hover:border-amber-400"
+                      ? "border-amber-500 shadow-lg sm:-translate-x-2"
+                      : "border-amber-200 sm:hover:border-amber-400"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-4">
@@ -518,7 +517,7 @@ export function Thasos() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all sm:hover:-translate-y-2 border border-green-100"
+                className="bg-white p-8 rounded-2xl shadow-lg border border-green-100 sm:transition-all sm:hover:shadow-2xl sm:hover:-translate-y-2"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 shadow-md">
                   <activity.icon className="text-white" size={32} />
