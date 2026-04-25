@@ -568,9 +568,9 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative bg-white border border-amber-200 p-8 rounded-xl hover:border-amber-500 hover:shadow-xl hover:shadow-amber-500/10 transition-all duration-500 hover:-translate-y-1"
+                className="group relative bg-white border border-amber-200 p-8 rounded-xl sm:transition-all sm:duration-500 sm:hover:border-amber-500 sm:hover:shadow-xl sm:hover:shadow-amber-500/10 sm:hover:-translate-y-1"
               >
-                <div className="w-12 h-12 flex items-center justify-center mb-5 border border-amber-300 rounded-lg bg-amber-50 group-hover:bg-amber-100 group-hover:border-amber-500 transition-all">
+                <div className="w-12 h-12 flex items-center justify-center mb-5 border border-amber-300 rounded-lg bg-amber-50 sm:transition-all sm:group-hover:bg-amber-100 sm:group-hover:border-amber-500">
                   <feature.icon className="text-amber-600" size={22} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-amber-600">{feature.title}</h3>
