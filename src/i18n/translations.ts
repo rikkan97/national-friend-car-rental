@@ -148,8 +148,8 @@ export const translations = {
     roadType: {
       label:           { el: "Κατηγορία Δρόμου",  en: "Road Type" },
       onlyRoad:        { el: "Μόνο Δρόμος",        en: "Only Road" },
-      beachOrMountain: { el: "Παραλίες ή Βουνό",   en: "Beaches or Mountain" },
-      forBeaches:      { el: "Για Παραλίες",       en: "For Beaches" },
+      beachOrMountain: { el: "Παραλίες ή Βουνό",   en: "Beach or Mountain" },
+      forBeaches:      { el: "Για Παραλίες",       en: "For Beach" },
     },
   },
 

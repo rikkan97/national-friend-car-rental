@@ -688,10 +688,7 @@ export function Fleet() {
                   <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0">
                     <Car size={20} className="text-amber-600" />
                   </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-amber-700 font-semibold">{t("fleet.roadType.label")}</p>
-                    <p className="text-sm sm:text-base font-bold text-gray-800">{t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
-                  </div>
+                  <p className="text-base sm:text-lg font-bold text-gray-800">{t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
                 </div>
 
                 {/* Equipment */}
