@@ -13,6 +13,8 @@ import { useT, useTv } from "../../i18n/LanguageContext";
 
 const heroImage = "https://images.unsplash.com/photo-1760976396211-5546ce83a400?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjByZW50YWwlMjBsdXh1cnklMjB2ZWhpY2xlfGVufDF8fHx8MTc3MTM3MzEwNHww&ixlib=rb-4.1.0&q=80&w=1080";
 
+type RoadType = "onlyRoad" | "beachOrMountain" | "forBeaches";
+
 interface CarType {
   id: string;
   name: string;
@@ -27,6 +29,7 @@ interface CarType {
   fuel: string;
   rating: number;
   features: string[];
+  roadType: RoadType;
 }
 
 export function Home() {
@@ -91,7 +94,8 @@ export function Home() {
       transmission: "Αυτόματο",
       fuel: "Βενζίνη",
       rating: 5,
-      features: popularCarFeatures
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
     },
     {
       id: "5",
@@ -106,7 +110,8 @@ export function Home() {
       transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
       rating: 4.9,
-      features: popularCarFeatures
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
     },
     {
       id: "4",
@@ -121,7 +126,8 @@ export function Home() {
       transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
       rating: 4.9,
-      features: popularCarFeatures
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
     },
     {
       id: "10",
@@ -136,7 +142,8 @@ export function Home() {
       transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
       rating: 4.9,
-      features: popularCarFeatures
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
     },
     {
       id: "15",
@@ -151,7 +158,8 @@ export function Home() {
       transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
       rating: 4.9,
-      features: popularCarFeatures
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
     },
     {
       id: "16",
@@ -166,7 +174,8 @@ export function Home() {
       transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
       rating: 4.9,
-      features: popularCarFeatures
+      features: popularCarFeatures,
+      roadType: "beachOrMountain"
     }
   ];
 
@@ -502,12 +511,25 @@ export function Home() {
                   {/* Divider */}
                   <div className="h-px bg-gray-200 mb-4"></div>
 
-                  {/* Price Box */}
-                  <div className="mb-4">
-                    <p className="text-xs text-gray-500 mb-1">{t("home.popular.from")}</p>
-                    <p className="text-3xl font-bold text-amber-600">
-                      {car.price}€<span className="text-base text-gray-600">{t("home.popular.perDay")}</span>
-                    </p>
+                  {/* Price + Road Type */}
+                  <div className="mb-4 flex items-end justify-between gap-3">
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">{t("home.popular.from")}</p>
+                      <p className="text-3xl font-bold text-amber-600">
+                        {car.price}€<span className="text-base text-gray-600">{t("home.popular.perDay")}</span>
+                      </p>
+                    </div>
+                    <span
+                      className={`text-[10px] tracking-wide uppercase font-bold px-2.5 py-1.5 rounded-full border whitespace-nowrap ${
+                        car.roadType === "onlyRoad"
+                          ? "bg-blue-50 text-blue-700 border-blue-200"
+                          : car.roadType === "beachOrMountain"
+                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                          : "bg-amber-50 text-amber-700 border-amber-300"
+                      }`}
+                    >
+                      {t(`fleet.roadType.${car.roadType}`)}
+                    </span>
                   </div>
 
                   {/* Buttons */}

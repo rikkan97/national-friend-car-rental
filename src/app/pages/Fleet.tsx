@@ -543,12 +543,25 @@ export function Fleet() {
                   {/* Divider */}
                   <div className="h-px bg-gray-200 mb-4"></div>
 
-                  {/* Price Box */}
-                  <div className="mb-4">
-                    <p className="text-xs text-gray-500 mb-1">{t("fleet.card.from")}</p>
-                    <p className="text-3xl font-bold text-amber-600">
-                      {car.price}€<span className="text-base text-gray-600">{t("fleet.card.perDay")}</span>
-                    </p>
+                  {/* Price + Road Type */}
+                  <div className="mb-4 flex items-end justify-between gap-3">
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">{t("fleet.card.from")}</p>
+                      <p className="text-3xl font-bold text-amber-600">
+                        {car.price}€<span className="text-base text-gray-600">{t("fleet.card.perDay")}</span>
+                      </p>
+                    </div>
+                    <span
+                      className={`text-[10px] tracking-wide uppercase font-bold px-2.5 py-1.5 rounded-full border whitespace-nowrap ${
+                        car.roadType === "onlyRoad"
+                          ? "bg-blue-50 text-blue-700 border-blue-200"
+                          : car.roadType === "beachOrMountain"
+                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                          : "bg-amber-50 text-amber-700 border-amber-300"
+                      }`}
+                    >
+                      {t(`fleet.roadType.${car.roadType}`)}
+                    </span>
                   </div>
 
                   {/* Buttons */}
