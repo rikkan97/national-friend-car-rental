@@ -520,11 +520,6 @@ export function Home() {
                 transition={{ delay: index * 0.03 }}
                 className="group relative bg-white rounded-2xl overflow-hidden ring-1 ring-amber-200/60 shadow-[0_4px_20px_-8px_rgba(245,158,11,0.18),_0_15px_40px_-18px_rgba(120,80,20,0.12)] hover:ring-amber-300 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.4),_0_30px_60px_-18px_rgba(120,80,20,0.3)] hover:-translate-y-1.5 transition-all duration-500 ease-out"
               >
-                {/* Animated gold strip with shimmer on hover */}
-                <div className="relative h-[3px] bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1200ms] ease-out" />
-                </div>
-
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                   <img
