@@ -505,14 +505,14 @@ export function Fleet() {
               <motion.div
                 key={car.id}
                 layout
-                className="group relative bg-white rounded-2xl overflow-hidden ring-1 ring-amber-200/60 shadow-[0_4px_20px_-8px_rgba(245,158,11,0.18),_0_15px_40px_-18px_rgba(120,80,20,0.12)] hover:ring-amber-300 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.4),_0_30px_60px_-18px_rgba(120,80,20,0.3)] hover:-translate-y-1.5 transition-all duration-500 ease-out"
+                className="group relative bg-white rounded-2xl overflow-hidden ring-1 ring-amber-200/60 shadow-[0_4px_20px_-8px_rgba(245,158,11,0.18),_0_15px_40px_-18px_rgba(120,80,20,0.12)] sm:hover:ring-amber-300 sm:hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.4),_0_30px_60px_-18px_rgba(120,80,20,0.3)] sm:hover:-translate-y-1.5 transition-all duration-500 ease-out"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                   <img
                     src={car.image}
                     alt={car.name}
-                    className="relative w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] transform-gpu backface-hidden will-change-transform"
+                    className="relative w-full h-full object-cover transition-transform duration-700 ease-out sm:group-hover:scale-[1.06] sm:transform-gpu sm:backface-hidden sm:will-change-transform"
                   />
 
                   {/* Road Type chip — top left */}
@@ -639,7 +639,7 @@ export function Fleet() {
               {/* Content */}
               <div className="p-5 sm:p-8">
                 <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2 break-words">{detailsModalCar.name}</h2>
-                <p className="text-amber-600 font-semibold mb-5 sm:mb-6 text-sm sm:text-base">{categoryLabel[detailsModalCar.category] ?? detailsModalCar.category} • {detailsModalCar.engine}</p>
+                <p className="text-amber-600 font-semibold mb-5 sm:mb-6 text-sm sm:text-base">{categoryLabel[detailsModalCar.category] ?? detailsModalCar.category} • {t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
 
                 {/* Specs Grid - 2x3 with amber backgrounds */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
