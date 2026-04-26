@@ -10,6 +10,15 @@ import { DateRange } from "react-day-picker";
 import { TransmissionIcon } from "../components/TransmissionIcon";
 import { EngineIcon } from "../components/EngineIcon";
 import { useT, useTv } from "../../i18n/LanguageContext";
+import twingoImg from "../../assets/cars/twingo.webp";
+import aygo2Img from "../../assets/cars/aygo2.webp";
+import i10Img from "../../assets/cars/i10.webp";
+import picantoOldImg from "../../assets/cars/picanto-old.webp";
+import i20Img from "../../assets/cars/i20.webp";
+import dobloImg from "../../assets/cars/doblo.webp";
+import dusterImg from "../../assets/cars/duster.webp";
+import jimnyImg from "../../assets/cars/jimny.webp";
+import mgZsImg from "../../assets/cars/zs.webp";
 
 const heroImage = "https://images.unsplash.com/photo-1760976396211-5546ce83a400?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjByZW50YWwlMjBsdXh1cnklMjB2ZWhpY2xlfGVufDF8fHx8MTc3MTM3MzEwNHww&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -63,10 +72,9 @@ export function Home() {
     { id: "5",  name: "HYUNDAI i10",            category: "B",  price: 40 },
     { id: "6",  name: "KIA PICANTO",        category: "B",  price: 45 },
     { id: "7",  name: "NISSAN MICRA",           category: "B",  price: 40 },
-    { id: "8",  name: "HYUNDAI i10",  category: "B1", price: 50 },
     { id: "9",  name: "KIA PICANTO",  category: "B1", price: 55 },
     { id: "10", name: "HYUNDAI i20",            category: "C",  price: 45 },
-    { id: "11", name: "PEUGEOT 207",            category: "C",  price: 45 },
+    { id: "11", name: "PEUGEOT 208",            category: "C",  price: 45 },
     { id: "13", name: "RENAULT CLIO",           category: "C",  price: 50 },
     { id: "14", name: "DACIA SANDERO",          category: "C",  price: 45 },
     { id: "18", name: "MG3",                    category: "C",  price: 48 },
@@ -82,34 +90,18 @@ export function Home() {
 
   const popularCars: CarType[] = [
     {
-      id: "9",
-      name: "KIA PICANTO",
-      category: "B1",
-      image: "https://www.national-friend.gr/media/k2/items/cache/e31ace2a15a7c70645ad83df9ecd43b0_M.jpg",
-      price: 55,
-      passengers: 5,
+      id: "2",
+      name: "RENAULT TWINGO",
+      category: "A",
+      image: twingoImg,
+      price: 35,
+      passengers: 4,
       luggage: 3,
       engine: "1200cc",
-      doors: 5,
-      transmission: "Αυτόματο",
-      fuel: "Βενζίνη",
-      rating: 5,
-      features: popularCarFeatures,
-      roadType: "onlyRoad"
-    },
-    {
-      id: "5",
-      name: "HYUNDAI i10",
-      category: "B",
-      image: "https://www.national-friend.gr/media/k2/items/cache/2ff2ba0051687eef5ca0459cf942940c_M.jpg",
-      price: 40,
-      passengers: 5,
-      luggage: 3,
-      engine: "1086cc",
-      doors: 5,
+      doors: 2,
       transmission: "Χειροκίνητο",
       fuel: "Βενζίνη",
-      rating: 4.9,
+      rating: 4.8,
       features: popularCarFeatures,
       roadType: "onlyRoad"
     },
@@ -117,7 +109,7 @@ export function Home() {
       id: "4",
       name: "TOYOTA AYGO",
       category: "A",
-      image: "https://www.national-friend.gr/media/k2/items/cache/077ab55046ce80eaf9a3ddea999597ca_M.jpg",
+      image: aygo2Img,
       price: 38,
       passengers: 4,
       luggage: 3,
@@ -130,10 +122,42 @@ export function Home() {
       roadType: "onlyRoad"
     },
     {
+      id: "5",
+      name: "HYUNDAI i10",
+      category: "B",
+      image: i10Img,
+      price: 40,
+      passengers: 5,
+      luggage: 3,
+      engine: "1086cc",
+      doors: 5,
+      transmission: "Χειροκίνητο",
+      fuel: "Βενζίνη",
+      rating: 4.9,
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
+    },
+    {
+      id: "9",
+      name: "KIA PICANTO",
+      category: "B1",
+      image: picantoOldImg,
+      price: 55,
+      passengers: 5,
+      luggage: 3,
+      engine: "1200cc",
+      doors: 5,
+      transmission: "Αυτόματο",
+      fuel: "Βενζίνη",
+      rating: 5,
+      features: popularCarFeatures,
+      roadType: "onlyRoad"
+    },
+    {
       id: "10",
       name: "HYUNDAI i20",
       category: "C",
-      image: "https://www.national-friend.gr/media/k2/items/cache/c889234799e865bbe90cee71f6cd2e53_M.jpg",
+      image: i20Img,
       price: 45,
       passengers: 5,
       luggage: 4,
@@ -149,7 +173,7 @@ export function Home() {
       id: "15",
       name: "FIAT DOBLO",
       category: "D",
-      image: "https://www.national-friend.gr/media/k2/items/cache/fc1da7257992fc36032e11db3df7a664_M.jpg",
+      image: dobloImg,
       price: 55,
       passengers: 7,
       luggage: 4,
@@ -165,7 +189,7 @@ export function Home() {
       id: "16",
       name: "DACIA DUSTER 4x2",
       category: "G",
-      image: "https://www.national-friend.gr/media/k2/items/cache/9b2c4b44fb86522964124ed80d03c5e8_M.jpg",
+      image: dusterImg,
       price: 65,
       passengers: 5,
       luggage: 4,
@@ -176,6 +200,38 @@ export function Home() {
       rating: 4.9,
       features: popularCarFeatures,
       roadType: "beachOrMountain"
+    },
+    {
+      id: "17",
+      name: "SUZUKI JIMNY 4x4",
+      category: "G1",
+      image: jimnyImg,
+      price: 75,
+      passengers: 4,
+      luggage: 2,
+      engine: "1300cc",
+      doors: 2,
+      transmission: "Χειροκίνητο",
+      fuel: "Βενζίνη",
+      rating: 5,
+      features: popularCarFeatures,
+      roadType: "beachOrMountain"
+    },
+    {
+      id: "19",
+      name: "MG ZS MAX",
+      category: "G2",
+      image: mgZsImg,
+      price: 70,
+      passengers: 5,
+      luggage: 3,
+      engine: "1500cc",
+      doors: 5,
+      transmission: "Χειροκίνητο",
+      fuel: "Βενζίνη",
+      rating: 4.9,
+      features: popularCarFeatures,
+      roadType: "forBeaches"
     }
   ];
 
@@ -462,26 +518,37 @@ export function Home() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: index * 0.03 }}
-                className="bg-white rounded-xl overflow-hidden hover:shadow-2xl transition-shadow sm:hover:-translate-y-1 border border-amber-500"
+                className="group relative bg-white rounded-2xl overflow-hidden ring-1 ring-amber-200/60 shadow-[0_4px_20px_-8px_rgba(245,158,11,0.18),_0_15px_40px_-18px_rgba(120,80,20,0.12)] hover:ring-amber-300 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.4),_0_30px_60px_-18px_rgba(120,80,20,0.3)] hover:-translate-y-1.5 transition-all duration-500 ease-out"
               >
+                {/* Animated gold strip with shimmer on hover */}
+                <div className="relative h-[3px] bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1200ms] ease-out" />
+                </div>
+
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                   <img
                     src={car.image}
                     alt={car.name}
-                    className="w-full h-full object-cover"
+                    className="relative w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] transform-gpu backface-hidden will-change-transform"
                   />
+
+                  {/* Road Type chip — top left */}
+                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-amber-700 border border-amber-300 shadow-md px-2.5 py-1.5 rounded-full text-[10px] font-bold tracking-wide uppercase whitespace-nowrap pointer-events-none">
+                    {t(`fleet.roadType.${car.roadType}`)}
+                  </div>
+                  {/* Category chip — top right */}
+                  <div className="absolute top-3 right-3 bg-gradient-to-br from-amber-500 to-amber-600 text-white px-3 py-1 rounded-full shadow-lg shadow-amber-600/30 text-[10px] font-bold tracking-[0.15em] uppercase pointer-events-none">
+                    {categoryLabel[car.category] ?? car.category}
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{car.name}</h3>
-                    <p className="text-sm text-amber-600">{categoryLabel[car.category] ?? car.category}</p>
-                  </div>
+                <div className="p-6 pt-5">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-5 tracking-tight leading-tight">{car.name}</h3>
 
                   {/* 6 Specs in 2 columns */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="grid grid-cols-2 gap-2.5 mb-5">
                     <div className="flex items-center gap-2">
                       <TransmissionIcon className="text-amber-600" size={18} />
                       <span className="text-sm text-gray-700">{tv(car.transmission)}</span>
@@ -508,28 +575,15 @@ export function Home() {
                     </div>
                   </div>
 
-                  {/* Divider */}
-                  <div className="h-px bg-gray-200 mb-4"></div>
+                  {/* Gradient divider */}
+                  <div className="h-px bg-gradient-to-r from-transparent via-amber-200 to-transparent mb-5"></div>
 
-                  {/* Price + Road Type */}
-                  <div className="mb-4 flex items-end justify-between gap-3">
-                    <div>
-                      <p className="text-xs text-gray-500 mb-1">{t("home.popular.from")}</p>
-                      <p className="text-3xl font-bold text-amber-600">
-                        {car.price}€<span className="text-base text-gray-600">{t("home.popular.perDay")}</span>
-                      </p>
-                    </div>
-                    <span
-                      className={`text-[10px] tracking-wide uppercase font-bold px-2.5 py-1.5 rounded-full border whitespace-nowrap ${
-                        car.roadType === "onlyRoad"
-                          ? "bg-blue-50 text-blue-700 border-blue-200"
-                          : car.roadType === "beachOrMountain"
-                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                          : "bg-amber-50 text-amber-700 border-amber-300"
-                      }`}
-                    >
-                      {t(`fleet.roadType.${car.roadType}`)}
-                    </span>
+                  {/* Price */}
+                  <div className="mb-5">
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-amber-700/80 font-semibold mb-1">{t("home.popular.from")}</p>
+                    <p className="text-4xl font-bold leading-none bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">
+                      {car.price}€<span className="text-sm text-gray-500 font-medium">{t("home.popular.perDay")}</span>
+                    </p>
                   </div>
 
                   {/* Buttons */}

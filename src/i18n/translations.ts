@@ -147,9 +147,9 @@ export const translations = {
     },
     roadType: {
       label:           { el: "Κατηγορία Δρόμου",  en: "Road Type" },
-      onlyRoad:        { el: "Μόνο Δρόμος",        en: "Only Road" },
-      beachOrMountain: { el: "Παραλίες ή Βουνό",   en: "Beach or Mountain" },
-      forBeaches:      { el: "Για Παραλίες",       en: "For Beach" },
+      onlyRoad:        { el: "Αστικές Διαδρομές",   en: "City Routes" },
+      beachOrMountain: { el: "Παντός Εδάφους",      en: "All Terrain" },
+      forBeaches:      { el: "Εξερεύνηση Παραλιών", en: "Beach Explorer" },
     },
   },
 
@@ -425,7 +425,7 @@ export const translations = {
     finesTitle:{ el: "Πρόστιμα",                       en: "Fines" },
     finesDesc:{ el: "Όλα τα πρόστιμα και διοικητικές ποινές επιβαρύνουν τον ενοικιαστή.", en: "All fines and administrative penalties are charged to the renter." },
     liabTitle:{ el: "Απαλλαγές - Υποχρεώσεις Ενοικιαστή", en: "Exclusions - Renter Obligations" },
-    liabDesc: { el: "Περιλαμβάνεται στην τιμή για όλες τις κατηγορίες (A, B, C, D, B1, G, G1). Ο ενοικιαστής έχει υποχρέωση την πλήρη αποκατάσταση ζημιών που προέρχονται από:", en: "Included in the price for all categories (A, B, C, D, B1, G, G1). The renter is obliged to fully compensate for damages arising from:" },
+    liabDesc: { el: "Περιλαμβάνεται στην τιμή για όλες τις κατηγορίες (A, B, B1, C, C1, D, G, G1, G2). Ο ενοικιαστής έχει υποχρέωση την πλήρη αποκατάσταση ζημιών που προέρχονται από:", en: "Included in the price for all categories (A, B, B1, C, C1, D, G, G1, G2). The renter is obliged to fully compensate for damages arising from:" },
     liab1:    { el: "Παράβαση του κώδικα οδικής κυκλοφορίας.", en: "Violation of the traffic code." },
     liab2:    { el: "Οδήγηση υπό την επήρεια αλκοόλ και ναρκωτικών.", en: "Driving under the influence of alcohol or drugs." },
     liab3:    { el: "Οδήγηση σε μη κεντρικούς δρόμους όπως σε ακατάλληλους δρόμους, αμμουδιά, βουνά.", en: "Driving on non-main roads such as unsuitable roads, sand, or mountains." },
