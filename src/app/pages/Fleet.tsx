@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { motion, AnimatePresence } from "motion/react";
-import { Users, Fuel, SlidersHorizontal, X, Briefcase, Gauge, CheckCircle, ChevronDown, DoorClosed, Car, Settings } from "lucide-react";
+import { Users, Fuel, SlidersHorizontal, X, Briefcase, CheckCircle, ChevronDown, DoorClosed } from "lucide-react";
 import { useState, useEffect } from "react";
 import { BookingForm } from "../components/BookingForm";
 import { useLocation } from "react-router";
@@ -685,14 +685,6 @@ export function Fleet() {
                     </div>
                     <p className="text-lg font-bold text-gray-900">{detailsModalCar.doors}</p>
                   </div>
-                </div>
-
-                {/* Road Type */}
-                <div className="mb-6 p-4 rounded-xl border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-white flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0">
-                    <Car size={20} className="text-amber-600" />
-                  </div>
-                  <p className="text-base sm:text-lg font-bold text-gray-800">{t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
                 </div>
 
                 {/* Equipment */}
