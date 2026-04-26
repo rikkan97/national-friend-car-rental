@@ -368,23 +368,18 @@ export function Fleet() {
               >
                 {/* Mobile: stacked premium layout */}
                 <div className="flex items-center justify-between gap-3 lg:hidden">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-100 to-amber-50 border border-amber-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <SlidersHorizontal size={15} className="text-amber-600" strokeWidth={2.2} />
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-100 to-amber-50 border border-amber-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <SlidersHorizontal size={17} className="text-amber-600" strokeWidth={2.2} />
                     </div>
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-[11px] tracking-[0.25em] text-amber-700 uppercase font-bold leading-tight">
-                        {t("fleet.filters.label")}
-                      </span>
-                      <span className="text-[11px] text-gray-500 leading-tight mt-0.5">
-                        <span className="font-bold text-amber-600">{filteredCars.length}</span> {t("fleet.filters.available")}
-                      </span>
-                    </div>
+                    <span className="text-sm text-gray-600 leading-tight min-w-0">
+                      <span className="font-bold text-amber-600 text-base">{filteredCars.length}</span> {t("fleet.filters.available")}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <span
                       onClick={(e) => { e.stopPropagation(); clearAllFilters(); }}
-                      className="text-[10px] tracking-[0.15em] uppercase text-amber-700 hover:text-amber-900 font-semibold px-2.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 cursor-pointer"
+                      className="text-[9px] tracking-[0.12em] uppercase text-amber-700 hover:text-amber-900 font-semibold px-2 py-1 rounded-full bg-amber-50 border border-amber-200 cursor-pointer"
                     >
                       {t("fleet.filters.clear")}
                     </span>
