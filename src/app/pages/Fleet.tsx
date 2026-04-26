@@ -281,7 +281,7 @@ export function Fleet() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f6f3ee] via-[#F5F1E8] to-[#ece7df]">
-      <Header />
+      <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section with Background Image */}
       <section className="pt-32 pb-40 relative overflow-hidden">
