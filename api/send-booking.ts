@@ -53,7 +53,7 @@ function ownerHtml(d: BookingPayload): string {
   return `
     <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;color:#111">
       <div style="background:#d97706;color:#fff;padding:22px 28px;border-radius:10px 10px 0 0">
-        <h1 style="margin:0;font-size:22px">Νέα Κράτηση</h1>
+        <h1 style="margin:0;font-size:22px">Νέο Αίτημα</h1>
         <p style="margin:4px 0 0;opacity:.9;font-size:13px">National Friend Car Rental</p>
       </div>
       <div style="border:1px solid #fde68a;border-top:0;padding:26px;border-radius:0 0 10px 10px;background:#fffdf7">
@@ -100,7 +100,7 @@ function customerHtml(d: BookingPayload): string {
   return `
     <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;color:#111">
       <div style="background:#d97706;color:#fff;padding:22px 28px;border-radius:10px 10px 0 0">
-        <h1 style="margin:0;font-size:22px">${el ? "Λάβαμε την κράτησή σας" : "We received your booking"}</h1>
+        <h1 style="margin:0;font-size:22px">${el ? "Λάβαμε το αίτημα κράτησής σας" : "We received your booking request"}</h1>
         <p style="margin:4px 0 0;opacity:.9;font-size:13px">National Friend Car Rental</p>
       </div>
       <div style="border:1px solid #fde68a;border-top:0;padding:26px;border-radius:0 0 10px 10px;background:#fffdf7">
@@ -164,7 +164,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       from: FROM_EMAIL,
       to: OWNER_EMAIL,
       replyTo: d.email,
-      subject: `Νέα Κράτηση — ${d.firstName ?? ""} ${d.lastName ?? ""} — ${d.carName ?? ""}`,
+      subject: `Νέο Αίτημα — ${d.firstName ?? ""} ${d.lastName ?? ""} — ${d.carName ?? ""}`,
       html: ownerHtml(d),
     });
     if (ownerRes.error) {
@@ -178,8 +178,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       to: d.email,
       replyTo: OWNER_EMAIL,
       subject: el
-        ? "Λάβαμε την κράτησή σας — National Friend Car Rental"
-        : "We received your booking — National Friend Car Rental",
+        ? "Λάβαμε το αίτημα κράτησής σας — National Friend Car Rental"
+        : "We received your booking request — National Friend Car Rental",
       html: customerHtml(d),
     });
     if (customerRes.error) {
