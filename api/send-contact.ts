@@ -54,11 +54,18 @@ function ownerHtml(d: ContactPayload): string {
   `;
 }
 
+// Customer email language: Greek for GR/CY, English otherwise. Falls back to UI lang if no country.
+function customerIsEl(d: ContactPayload): boolean {
+  if (d.country === "GR" || d.country === "CY") return true;
+  if (d.country) return false;
+  return d.lang !== "en";
+}
+
 // ═══════════════════════════════════════════════════════
 //  CUSTOMER CONFIRMATION — in customer's language
 // ═══════════════════════════════════════════════════════
 function customerHtml(d: ContactPayload): string {
-  const el = d.lang !== "en";
+  const el = customerIsEl(d);
   return `
     <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;color:#111">
       <div style="background:#d97706;color:#fff;padding:22px 28px;border-radius:10px 10px 0 0">
@@ -108,7 +115,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    const el = d.lang !== "en";
+    const el = customerIsEl(d);
 
     // 1. Owner notification — always in Greek
     const ownerRes = await resend.emails.send({
@@ -127,6 +134,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const customerRes = await resend.emails.send({
       from: FROM_EMAIL,
       to: d.email,
+      replyTo: OWNER_EMAIL,
       subject: el
         ? "Λάβαμε το μήνυμά σας — National Friend Car Rental"
         : "We received your message — National Friend Car Rental",
