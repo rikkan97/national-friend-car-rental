@@ -325,13 +325,17 @@ export function Home() {
                     key={car.id}
                     animate={{
                       x: off * offsetX,
-                      rotateY: off * -28,
-                      z: isActive ? 0 : -180,
-                      scale: isActive ? 1 : 0.92,
-                      opacity: isVisible ? (isActive ? 1 : 0.55) : 0,
+                      rotateY: off * -22,
+                      z: isActive ? 0 : -120,
+                      scale: isActive ? 1 : 0.93,
+                      opacity: isVisible ? (isActive ? 1 : 0.65) : 0,
                       zIndex: isActive ? 30 : 20 - Math.abs(off),
                     }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                      duration: 1.3,
+                      ease: [0.83, 0, 0.17, 1],
+                      opacity: { duration: 1.1, ease: "easeInOut" },
+                    }}
                     style={{
                       pointerEvents: isVisible ? "auto" : "none",
                       transformStyle: "preserve-3d",
