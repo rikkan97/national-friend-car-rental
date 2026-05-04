@@ -31,7 +31,6 @@ function esc(v: unknown): string {
 //  OWNER NOTIFICATION — always in Greek
 // ═══════════════════════════════════════════════════════
 function ownerHtml(d: ContactPayload): string {
-  const langLabel = d.lang === "en" ? "English" : "Ελληνικά";
   return `
     <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;color:#111">
       <div style="background:#d97706;color:#fff;padding:22px 28px;border-radius:10px 10px 0 0">
@@ -44,7 +43,6 @@ function ownerHtml(d: ContactPayload): string {
           <tr><td style="padding:6px 0;color:#6b7280">Email:</td><td><a href="mailto:${esc(d.email)}" style="color:#d97706">${esc(d.email)}</a></td></tr>
           ${d.phone ? `<tr><td style="padding:6px 0;color:#6b7280">Τηλέφωνο:</td><td><a href="tel:${esc(d.phone)}" style="color:#d97706">${esc(d.phone)}</a></td></tr>` : ""}
           ${d.countryLabel ? `<tr><td style="padding:6px 0;color:#6b7280">Χώρα:</td><td>${esc(d.countryLabel)}</td></tr>` : ""}
-          <tr><td style="padding:6px 0;color:#6b7280">Γλώσσα πελάτη:</td><td>${langLabel}</td></tr>
         </table>
 
         <h2 style="font-size:14px;color:#b45309;margin:0 0 12px;letter-spacing:1px;text-transform:uppercase">Μήνυμα</h2>
