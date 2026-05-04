@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { motion } from "motion/react";
 import { Car, Shield, MapPin, Star, CheckCircle, ArrowRight, Users, DoorClosed, Fuel, Briefcase, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BookingForm } from "../components/BookingForm";
 import { useNavigate } from "react-router";
 import { TransmissionIcon } from "../components/TransmissionIcon";
@@ -137,6 +137,21 @@ export function Home() {
   const goNext = () => setActiveIdx((i) => (i + 1) % popularCount);
   const goPrev = () => setActiveIdx((i) => (i - 1 + popularCount) % popularCount);
 
+  // Touch swipe handlers for the carousel
+  const touchStartX = useRef<number | null>(null);
+  const onCarouselTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onCarouselTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) goNext();
+      else goPrev();
+    }
+    touchStartX.current = null;
+  };
+
   const handleBookNow = (car: CarType) => {
     setSelectedCar({ id: car.id, name: car.name });
     setBookingOpen(true);
@@ -178,7 +193,7 @@ export function Home() {
       <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 sm:pt-28 sm:pb-24">
+      <section className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24">
         <div className="absolute inset-0">
           <img
             src={heroImage}
@@ -291,7 +306,11 @@ export function Home() {
             </button>
 
             {/* Stage */}
-            <div className="relative flex items-center justify-center min-h-[640px] sm:min-h-[760px] overflow-hidden">
+            <div
+              className="relative flex items-center justify-center min-h-[640px] sm:min-h-[760px] overflow-hidden touch-pan-y select-none"
+              onTouchStart={onCarouselTouchStart}
+              onTouchEnd={onCarouselTouchEnd}
+            >
               {popularCars.map((car, idx) => {
                 let off = idx - activeIdx;
                 const half = popularCount / 2;
@@ -310,7 +329,7 @@ export function Home() {
                       zIndex: isActive ? 30 : 20 - Math.abs(off),
                       filter: isActive ? "blur(0px)" : "blur(1.5px)",
                     }}
-                    transition={{ type: "spring", stiffness: 220, damping: 28 }}
+                    transition={{ type: "spring", stiffness: 140, damping: 26, mass: 0.9 }}
                     style={{ pointerEvents: isVisible ? "auto" : "none" }}
                     onClick={() => { if (!isActive && isVisible) setActiveIdx(idx); }}
                     className={`absolute w-[290px] sm:w-[440px] ${!isActive && isVisible ? "cursor-pointer" : ""}`}
@@ -319,10 +338,10 @@ export function Home() {
                       {/* Image */}
                       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                         <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
-                        <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-amber-700 border border-amber-300 shadow-md px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase whitespace-nowrap pointer-events-none max-w-[45%] truncate">
+                        <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-amber-700 border border-amber-300 shadow-md px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase whitespace-nowrap pointer-events-none">
                           {t(`fleet.roadType.${car.roadType}`)}
                         </div>
-                        <div className="absolute top-2.5 right-2.5 bg-gradient-to-br from-amber-500 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg shadow-amber-600/30 text-[9px] sm:text-[10px] font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase pointer-events-none max-w-[45%] truncate">
+                        <div className="absolute top-2.5 right-2.5 bg-gradient-to-br from-amber-500 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg shadow-amber-600/30 text-[9px] sm:text-[10px] font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase pointer-events-none whitespace-nowrap">
                           {categoryLabel[car.category] ?? car.category}
                         </div>
                       </div>
