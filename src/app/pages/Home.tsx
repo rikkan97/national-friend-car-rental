@@ -305,10 +305,9 @@ export function Home() {
               <ChevronRight size={24} strokeWidth={2.5} />
             </button>
 
-            {/* Stage — 3D coverflow */}
+            {/* Stage — CSS-based 3D slide */}
             <div
-              className="relative flex items-center justify-center min-h-[640px] sm:min-h-[760px] overflow-hidden touch-pan-y select-none"
-              style={{ perspective: 1400 }}
+              className="relative flex items-center justify-center min-h-[640px] sm:min-h-[760px] overflow-hidden touch-pan-y select-none [perspective:1200px]"
               onTouchStart={onCarouselTouchStart}
               onTouchEnd={onCarouselTouchEnd}
             >
@@ -319,30 +318,18 @@ export function Home() {
                 else if (off < -half) off += popularCount;
                 const isActive = off === 0;
                 const isVisible = Math.abs(off) <= 1;
-                const offsetX = isMobile ? 150 : 360;
                 return (
-                  <motion.div
+                  <div
                     key={car.id}
-                    animate={{
-                      x: off * offsetX,
-                      rotateY: off * -22,
-                      z: isActive ? 0 : -120,
-                      scale: isActive ? 1 : 0.93,
-                      opacity: isVisible ? (isActive ? 1 : 0.65) : 0,
-                      zIndex: isActive ? 30 : 20 - Math.abs(off),
-                    }}
-                    transition={{
-                      duration: 1.3,
-                      ease: [0.83, 0, 0.17, 1],
-                      opacity: { duration: 1.1, ease: "easeInOut" },
-                    }}
+                    className={`absolute w-[290px] sm:w-[440px] transition-all duration-500 ease-in-out ${!isActive && isVisible ? "cursor-pointer" : ""}`}
                     style={{
+                      transform: `translateX(${off * 60}%) scale(${isActive ? 1 : 0.85}) rotateY(${off * -10}deg)`,
+                      zIndex: isActive ? 10 : isVisible ? 5 : 1,
+                      opacity: isActive ? 1 : isVisible ? 0.5 : 0,
+                      visibility: Math.abs(off) > 1 ? "hidden" : "visible",
                       pointerEvents: isVisible ? "auto" : "none",
-                      transformStyle: "preserve-3d",
-                      transformOrigin: "center center",
                     }}
                     onClick={() => { if (!isActive && isVisible) setActiveIdx(idx); }}
-                    className={`absolute w-[290px] sm:w-[440px] ${!isActive && isVisible ? "cursor-pointer" : ""}`}
                   >
                     <div className="bg-white rounded-2xl overflow-hidden ring-1 ring-amber-200/60 shadow-[0_10px_30px_-10px_rgba(245,158,11,0.4),_0_30px_60px_-18px_rgba(120,80,20,0.3)]">
                       {/* Image */}
@@ -409,7 +396,7 @@ export function Home() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
