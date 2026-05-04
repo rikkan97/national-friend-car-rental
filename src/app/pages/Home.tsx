@@ -329,7 +329,7 @@ export function Home() {
                       zIndex: isActive ? 30 : 20 - Math.abs(off),
                       filter: isActive ? "blur(0px)" : "blur(1.5px)",
                     }}
-                    transition={{ type: "spring", stiffness: 140, damping: 26, mass: 0.9 }}
+                    transition={{ duration: 0.55, ease: [0.32, 0.72, 0, 1] }}
                     style={{ pointerEvents: isVisible ? "auto" : "none" }}
                     onClick={() => { if (!isActive && isVisible) setActiveIdx(idx); }}
                     className={`absolute w-[290px] sm:w-[440px] ${!isActive && isVisible ? "cursor-pointer" : ""}`}
@@ -338,16 +338,19 @@ export function Home() {
                       {/* Image */}
                       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                         <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
-                        <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-amber-700 border border-amber-300 shadow-md px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase whitespace-nowrap pointer-events-none">
-                          {t(`fleet.roadType.${car.roadType}`)}
-                        </div>
-                        <div className="absolute top-2.5 right-2.5 bg-gradient-to-br from-amber-500 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg shadow-amber-600/30 text-[9px] sm:text-[10px] font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase pointer-events-none whitespace-nowrap">
-                          {categoryLabel[car.category] ?? car.category}
-                        </div>
                       </div>
 
                       {/* Content */}
                       <div className="p-6 pt-5">
+                        {/* Pills row */}
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                          <span className="bg-white text-amber-700 border border-amber-300 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase whitespace-nowrap">
+                            {t(`fleet.roadType.${car.roadType}`)}
+                          </span>
+                          <span className="bg-gradient-to-br from-amber-500 to-amber-600 text-white px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase whitespace-nowrap">
+                            {categoryLabel[car.category] ?? car.category}
+                          </span>
+                        </div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-5 tracking-tight leading-tight">{car.name}</h3>
 
                         <div className="grid grid-cols-2 gap-2.5 mb-5">
