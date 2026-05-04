@@ -1,17 +1,18 @@
 import { Phone, Mail, Facebook, Instagram, Clock } from "lucide-react";
-import logoImage from "figma:asset/0f6b906dfc0ff21309735e67dcdb8ae0299ae747.png";
+import logoImage from "../../assets/logo.png";
+import egeoTravelLogo from "../../assets/partners/egeo-travel.webp";
+import georgeHotelLogo from "../../assets/partners/george-hotel.webp";
 import { useT } from "../../i18n/LanguageContext";
 
 export function Footer() {
-  const { t } = useT();
+  const { t, lang } = useT();
 
   return (
     <footer className="bg-white text-gray-700 border-t border-amber-200">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:flex lg:flex-row lg:justify-between lg:items-start lg:gap-6">
           {/* Company Info */}
           <div>
-            <h3 className="text-amber-600 text-xl mb-4 font-bold">National Friend Car Rental</h3>
             <img
               src={logoImage}
               alt="National Friend Car Rental"
@@ -27,9 +28,9 @@ export function Footer() {
             <h3 className="text-amber-600 text-xl mb-4 font-bold">{t("footer.links")}</h3>
             <div className="space-y-2">
               <a href="/" className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.home")}</a>
-              <a href="/fleet" className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.fleet")}</a>
-              <a href="/thasos" className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.thasos")}</a>
-              <a href="/terms" className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.terms")}</a>
+              <a href={`/${lang}/our-cars`} className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.fleet")}</a>
+              <a href={`/${lang}/thassos`} className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.thasos")}</a>
+              <a href={`/${lang}/rental-conditions`} className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.terms")}</a>
               <a href="/contact" className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.contact")}</a>
               <a href="https://egeo-travel.com" target="_blank" rel="noopener noreferrer" className="block text-sm text-gray-600 hover:text-amber-600 transition-colors">{t("footer.accommodation")}</a>
             </div>
@@ -94,10 +95,51 @@ export function Footer() {
               </a>
             </div>
           </div>
+
+          {/* Partners */}
+          <div>
+            <h3 className="text-amber-600 text-xl mb-4 font-bold">{t("footer.partners")}</h3>
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="https://egeo-travel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Egeo Travel"
+                className="block hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src={egeoTravelLogo}
+                  alt="Egeo Travel"
+                  loading="lazy"
+                  decoding="async"
+                  width={140}
+                  height={56}
+                  className="h-14 w-auto object-contain"
+                />
+              </a>
+              <a
+                href="https://georgehotel.gr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="George Hotel"
+                className="block hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src={georgeHotelLogo}
+                  alt="George Hotel"
+                  loading="lazy"
+                  decoding="async"
+                  width={140}
+                  height={56}
+                  className="h-14 w-auto object-contain"
+                />
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-amber-200 text-center text-sm text-gray-600">
-          <p>© 2026 National Friend Car Rental. {t("footer.rights")}</p>
+          <p>© {new Date().getFullYear()} National Friend Car Rental. {t("footer.rights")}</p>
         </div>
       </div>
     </footer>

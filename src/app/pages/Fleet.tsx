@@ -8,7 +8,6 @@ import { useLocation } from "react-router";
 import { TransmissionIcon } from "../components/TransmissionIcon";
 import { EngineIcon } from "../components/EngineIcon";
 import { useT, useTv } from "../../i18n/LanguageContext";
-import twingoImg from "../../assets/cars/twingo.webp";
 import aygoImg from "../../assets/cars/aygo.webp";
 import aygo2Img from "../../assets/cars/aygo2.webp";
 import i10Img from "../../assets/cars/i10.webp";
@@ -18,7 +17,6 @@ import micraImg from "../../assets/cars/micra.webp";
 import i20Img from "../../assets/cars/i20.webp";
 import peugeot208Img from "../../assets/cars/peugeot-208.webp";
 import clioImg from "../../assets/cars/clio.webp";
-import sanderoImg from "../../assets/cars/sandero.webp";
 import dobloImg from "../../assets/cars/doblo.webp";
 import dusterImg from "../../assets/cars/duster.webp";
 import jimnyImg from "../../assets/cars/jimny.webp";
@@ -34,7 +32,6 @@ interface CarType {
   name: string;
   category: string;
   image: string;
-  price: number;
   passengers: number;
   luggage: number;
   engine: string;
@@ -51,7 +48,7 @@ export function Fleet() {
   const tv = useTv();
   const location = useLocation();
   const [bookingOpen, setBookingOpen] = useState(false);
-  const [selectedCar, setSelectedCar] = useState<{ id: string; name: string; price: number } | null>(null);
+  const [selectedCar, setSelectedCar] = useState<{ id: string; name: string } | null>(null);
   const [detailsModalCar, setDetailsModalCar] = useState<CarType | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
@@ -63,7 +60,6 @@ export function Fleet() {
     category: [] as string[],
     transmission: [] as string[],
     passengers: [] as string[],
-    priceRange: [25, 80] as [number, number],
     fuel: [] as string[]
   });
 
@@ -114,7 +110,6 @@ export function Fleet() {
   ];
 
   const carImages = {
-    renaultTwingo:    twingoImg,
     toyotaAygo:       aygoImg,
     toyotaAygoNew:    aygo2Img,
     hyundaiI10:       i10Img,
@@ -123,8 +118,7 @@ export function Fleet() {
     kiaPicantoAuto:   picantoOldImg,
     hyundaiI20:       i20Img,
     peugeot208:       peugeot208Img,
-    renaultClio:      sanderoImg,
-    renaultClioNew:   clioImg,
+    renaultClio:      clioImg,
     fiatDoblo:        dobloImg,
     daciaDuster:      dusterImg,
     suzukiJimny:      jimnyImg,
@@ -132,24 +126,22 @@ export function Fleet() {
   const standardFeatures = ["Κλιματισμός", "Ηλεκτρικά Παράθυρα", "Radio / CD", "Κεντρικό Κλείδωμα", "Υδραυλικό Τιμόνι"];
 
   const cars: CarType[] = [
-    { id: "2",  name: "RENAULT TWINGO",           category: "A",  image: carImages.renaultTwingo,   price: 35, passengers: 4, luggage: 3, engine: "1200cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "3",  name: "TOYOTA AYGO",              category: "A",  image: carImages.toyotaAygo,      price: 35, passengers: 4, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "4",  name: "TOYOTA AYGO",              category: "A",  image: carImages.toyotaAygoNew,   price: 38, passengers: 4, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "5",  name: "HYUNDAI i10",              category: "B",  image: carImages.hyundaiI10,      price: 40, passengers: 5, luggage: 3, engine: "1086cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "7",  name: "NISSAN MICRA",             category: "B",  image: carImages.nissanMicra,     price: 40, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "6",  name: "KIA PICANTO",              category: "B",  image: carImages.kiaPicantoNew,   price: 45, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
-    { id: "9",  name: "KIA PICANTO",              category: "B1", image: carImages.kiaPicantoAuto,  price: 55, passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Αυτόματο",    fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
-    { id: "10", name: "HYUNDAI i20",              category: "C",  image: carImages.hyundaiI20,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "11", name: "PEUGEOT 208",              category: "C",  image: carImages.peugeot208,      price: 45, passengers: 5, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "14", name: "DACIA SANDERO",            category: "C",  image: carImages.renaultClio,     price: 45, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "18", name: "MG3",                      category: "C",  image: mg3Image,                  price: 48, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "13", name: "RENAULT CLIO",             category: "C",  image: carImages.renaultClioNew,  price: 50, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
-    { id: "15", name: "FIAT DOBLO",               category: "D",  image: carImages.fiatDoblo,       price: 55, passengers: 7, luggage: 4, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
-    { id: "16", name: "DACIA DUSTER 4x2",         category: "G",  image: carImages.daciaDuster,     price: 65, passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "beachOrMountain" },
-    { id: "17", name: "SUZUKI JIMNY 4x4",         category: "G1", image: carImages.suzukiJimny,     price: 75, passengers: 4, luggage: 2, engine: "1300cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "beachOrMountain" },
-    { id: "19", name: "MG ZS MAX",                category: "G2", image: mgZsImage,                 price: 70, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
-    { id: "20", name: "NISSAN JUKE",              category: "G2", image: nissanJukeImage,           price: 70, passengers: 5, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
-    { id: "21", name: "MG3 HYBRID+",              category: "G2", image: mg3HybridImage,            price: 75, passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Αυτόματο",    fuel: "Υβριδικό", rating: 5,   features: standardFeatures, roadType: "forBeaches" },
+    { id: "3",  name: "TOYOTA AYGO",              category: "A",  image: carImages.toyotaAygo,      passengers: 4, luggage: 1.5, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "4",  name: "TOYOTA AYGO",              category: "A",  image: carImages.toyotaAygoNew,   passengers: 4, luggage: 1.5, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "5",  name: "HYUNDAI i10",              category: "B",  image: carImages.hyundaiI10,      passengers: 5, luggage: 2, engine: "1086cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "7",  name: "NISSAN MICRA",             category: "B",  image: carImages.nissanMicra,     passengers: 5, luggage: 2.5, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "6",  name: "KIA PICANTO",              category: "B",  image: carImages.kiaPicantoNew,   passengers: 5, luggage: 2, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
+    { id: "9",  name: "KIA PICANTO",              category: "B1", image: carImages.kiaPicantoAuto,  passengers: 5, luggage: 2, engine: "1200cc", doors: 5, transmission: "Αυτόματο",    fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
+    { id: "10", name: "HYUNDAI i20",              category: "C",  image: carImages.hyundaiI20,      passengers: 5, luggage: 3, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "11", name: "PEUGEOT 208",              category: "C",  image: carImages.peugeot208,      passengers: 5, luggage: 3, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "18", name: "MG MG3",                   category: "C",  image: mg3Image,                  passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.8, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "13", name: "RENAULT CLIO",             category: "C",  image: carImages.renaultClio,     passengers: 5, luggage: 3, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "onlyRoad" },
+    { id: "21", name: "MG MG3 HYBRID+",           category: "C1", image: mg3HybridImage,            passengers: 5, luggage: 3, engine: "1500cc", doors: 5, transmission: "Αυτόματο",    fuel: "Υβριδικό", rating: 5,   features: standardFeatures, roadType: "forBeaches" },
+    { id: "15", name: "FIAT DOBLO",               category: "D",  image: carImages.fiatDoblo,       passengers: 7, luggage: 1, engine: "1400cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "onlyRoad" },
+    { id: "16", name: "DACIA DUSTER 4x2",         category: "G",  image: carImages.daciaDuster,     passengers: 5, luggage: 4, engine: "1200cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "beachOrMountain" },
+    { id: "17", name: "SUZUKI JIMNY 4x4",         category: "G1", image: carImages.suzukiJimny,     passengers: 4, luggage: 1, engine: "1300cc", doors: 2, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 5,   features: standardFeatures, roadType: "beachOrMountain" },
+    { id: "19", name: "MG ZS MAX",                category: "G2", image: mgZsImage,                 passengers: 5, luggage: 4, engine: "1500cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
+    { id: "20", name: "NISSAN JUKE",              category: "G2", image: nissanJukeImage,           passengers: 5, luggage: 3, engine: "1000cc", doors: 5, transmission: "Χειροκίνητο", fuel: "Βενζίνη", rating: 4.9, features: standardFeatures, roadType: "forBeaches" },
   ];
 
   // Filter logic
@@ -165,7 +157,6 @@ export function Fleet() {
       });
       if (!matchesPassengers) return false;
     }
-    if (car.price < filters.priceRange[0] || car.price > filters.priceRange[1]) return false;
     if (filters.fuel.length > 0 && !filters.fuel.includes(car.fuel)) return false;
     return true;
   });
@@ -186,12 +177,11 @@ export function Fleet() {
       category: [],
       transmission: [],
       passengers: [],
-      priceRange: [25, 80],
       fuel: []
     });
   };
 
-  const handleBookNow = (car?: { id: string; name: string; price: number }) => {
+  const handleBookNow = (car?: { id: string; name: string }) => {
     if (car) {
       setSelectedCar(car);
     }
@@ -342,7 +332,7 @@ export function Fleet() {
               </div>
               <div className="h-10 w-px bg-amber-400/30" />
               <div className="text-center">
-                <div className="text-2xl md:text-4xl font-bold text-amber-400">25+</div>
+                <div className="text-2xl md:text-4xl font-bold text-amber-400">{new Date().getFullYear() - 2000}</div>
                 <div className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/60 mt-1">{t("fleet.hero.statYears")}</div>
               </div>
             </motion.div>
@@ -416,75 +406,6 @@ export function Fleet() {
                   <FilterDropdown title={t("fleet.filters.category")} items={categories} filterKey="category" />
                   <FilterDropdown title={t("fleet.filters.transmission")} items={transmissions} filterKey="transmission" />
                   <FilterDropdown title={t("fleet.filters.passengers")} items={passengerOptions} filterKey="passengers" />
-                  <div className="relative">
-                    <button
-                      onClick={() => setOpenDropdown(openDropdown === 'priceRange' ? null : 'priceRange')}
-                      className="px-5 py-2.5 rounded-full border bg-white text-gray-700 border-gray-200 hover:border-amber-500 hover:text-amber-700 transition-all font-medium text-sm flex items-center gap-2.5"
-                    >
-                      {t("fleet.filters.price")}
-                      <ChevronDown className={`transition-transform ${openDropdown === 'priceRange' ? 'rotate-180' : ''}`} size={16} />
-                    </button>
-
-                    {openDropdown === 'priceRange' && (
-                      <div
-                        data-filter-popup
-                        onClick={(e) => e.stopPropagation()}
-                        onMouseDown={(e) => e.stopPropagation()}
-                        onTouchStart={(e) => e.stopPropagation()}
-                        className="absolute top-full mt-3 bg-white rounded-xl shadow-2xl shadow-amber-500/10 border border-amber-200 p-5 min-w-[280px] z-50"
-                      >
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-[10px] tracking-[0.2em] text-amber-700 uppercase font-semibold">{t("fleet.filters.priceTitle")}</span>
-                          <div className="flex items-baseline gap-1.5 text-amber-600">
-                            <span className="text-lg font-bold">{filters.priceRange[0]}€</span>
-                            <span className="text-gray-400">—</span>
-                            <span className="text-lg font-bold">{filters.priceRange[1]}€</span>
-                          </div>
-                        </div>
-
-                        {/* Dual-range slider */}
-                        <div className="relative h-6 flex items-center">
-                          <div className="absolute inset-x-0 h-1.5 bg-amber-100 rounded-full pointer-events-none" />
-                          <div
-                            className="absolute h-1.5 bg-amber-500 rounded-full pointer-events-none"
-                            style={{
-                              left: `${((filters.priceRange[0] - 25) / (80 - 25)) * 100}%`,
-                              right: `${100 - ((filters.priceRange[1] - 25) / (80 - 25)) * 100}%`,
-                            }}
-                          />
-                          <input
-                            type="range"
-                            min="25"
-                            max="80"
-                            step="1"
-                            value={filters.priceRange[0]}
-                            onChange={(e) => {
-                              const v = parseInt(e.target.value);
-                              setFilters(prev => ({ ...prev, priceRange: [Math.min(v, prev.priceRange[1] - 1), prev.priceRange[1]] }));
-                            }}
-                            className="absolute inset-x-0 w-full h-6 bg-transparent appearance-none pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-amber-600 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-amber-600 [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:cursor-pointer"
-                          />
-                          <input
-                            type="range"
-                            min="25"
-                            max="80"
-                            step="1"
-                            value={filters.priceRange[1]}
-                            onChange={(e) => {
-                              const v = parseInt(e.target.value);
-                              setFilters(prev => ({ ...prev, priceRange: [prev.priceRange[0], Math.max(v, prev.priceRange[0] + 1)] }));
-                            }}
-                            className="absolute inset-x-0 w-full h-6 bg-transparent appearance-none pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-amber-600 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-amber-600 [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:cursor-pointer"
-                          />
-                        </div>
-
-                        <div className="flex items-center justify-between text-xs text-gray-500 mt-3">
-                          <span>25€</span>
-                          <span>80€</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
                   <FilterDropdown title={t("fleet.filters.fuel")} items={fuelTypes} filterKey="fuel" />
                 </div>
               </div>
@@ -532,7 +453,7 @@ export function Fleet() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Briefcase className="text-amber-600" size={18} />
-                      <span className="text-sm text-gray-700">{car.luggage} {t("fleet.card.luggage")}</span>
+                      <span className="text-sm text-gray-700">{car.luggage} {t(car.luggage <= 1.5 ? "fleet.card.luggageSingular" : "fleet.card.luggage")}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <EngineIcon className="text-amber-600" size={18} />
@@ -556,13 +477,6 @@ export function Fleet() {
                   <div className="h-px bg-gradient-to-r from-transparent via-amber-200 to-transparent mb-5"></div>
 
                   {/* Price */}
-                  <div className="mb-5">
-                    <p className="text-[10px] tracking-[0.2em] uppercase text-amber-700/80 font-semibold mb-1">{t("fleet.card.from")}</p>
-                    <p className="text-4xl font-bold leading-none bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">
-                      {car.price}€<span className="text-sm text-gray-500 font-medium">{t("fleet.card.perDay")}</span>
-                    </p>
-                  </div>
-
                   {/* Buttons */}
                   <div className="space-y-3">
                     <button
@@ -623,7 +537,7 @@ export function Fleet() {
               </button>
 
               {/* Image */}
-              <div className="relative h-48 sm:h-64 overflow-hidden rounded-t-2xl">
+              <div className="relative h-40 sm:h-48 overflow-hidden rounded-t-2xl">
                 <img
                   src={detailsModalCar.image}
                   alt={detailsModalCar.name}
@@ -632,75 +546,67 @@ export function Fleet() {
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-8">
-                <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2 break-words">{detailsModalCar.name}</h2>
-                <p className="text-amber-600 font-semibold mb-5 sm:mb-6 text-sm sm:text-base">{categoryLabel[detailsModalCar.category] ?? detailsModalCar.category} • {t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
+              <div className="p-5 sm:p-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 break-words">{detailsModalCar.name}</h2>
+                <p className="text-amber-600 font-semibold mb-4 text-sm">{categoryLabel[detailsModalCar.category] ?? detailsModalCar.category} • {t(`fleet.roadType.${detailsModalCar.roadType}`)}</p>
 
                 {/* Specs Grid - 2x3 with amber backgrounds */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-                    <div className="flex items-center gap-2 text-amber-600 mb-1">
-                      <Users size={20} />
-                      <p className="text-xs text-gray-600">{t("details.passengers")}</p>
+                <div className="grid grid-cols-2 gap-2.5 mb-4">
+                  <div className="bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-0.5">
+                      <Users size={16} />
+                      <p className="text-[11px] text-gray-600">{t("details.passengers")}</p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">{detailsModalCar.passengers} {t("details.people")}</p>
+                    <p className="text-sm font-bold text-gray-900">{detailsModalCar.passengers} {t("details.people")}</p>
                   </div>
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-                    <div className="flex items-center gap-2 text-amber-600 mb-1">
-                      <Briefcase size={20} />
-                      <p className="text-xs text-gray-600">{t("details.luggage")}</p>
+                  <div className="bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-0.5">
+                      <Briefcase size={16} />
+                      <p className="text-[11px] text-gray-600">{t("details.luggage")}</p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">{detailsModalCar.luggage} {t("details.luggageUnit")}</p>
+                    <p className="text-sm font-bold text-gray-900">{detailsModalCar.luggage} {t(detailsModalCar.luggage <= 1.5 ? "details.luggageUnitSingular" : "details.luggageUnit")}</p>
                   </div>
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-                    <div className="flex items-center gap-2 text-amber-600 mb-1">
-                      <TransmissionIcon size={20} />
-                      <p className="text-xs text-gray-600">{t("details.transmission")}</p>
+                  <div className="bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-0.5">
+                      <TransmissionIcon size={16} />
+                      <p className="text-[11px] text-gray-600">{t("details.transmission")}</p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">{tv(detailsModalCar.transmission)}</p>
+                    <p className="text-sm font-bold text-gray-900">{tv(detailsModalCar.transmission)}</p>
                   </div>
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-                    <div className="flex items-center gap-2 text-amber-600 mb-1">
-                      <EngineIcon size={20} />
-                      <p className="text-xs text-gray-600">{t("details.engine")}</p>
+                  <div className="bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-0.5">
+                      <EngineIcon size={16} />
+                      <p className="text-[11px] text-gray-600">{t("details.engine")}</p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">{detailsModalCar.engine}</p>
+                    <p className="text-sm font-bold text-gray-900">{detailsModalCar.engine}</p>
                   </div>
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-                    <div className="flex items-center gap-2 text-amber-600 mb-1">
-                      <Fuel size={20} />
-                      <p className="text-xs text-gray-600">{t("details.fuel")}</p>
+                  <div className="bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-0.5">
+                      <Fuel size={16} />
+                      <p className="text-[11px] text-gray-600">{t("details.fuel")}</p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">{tv(detailsModalCar.fuel)}</p>
+                    <p className="text-sm font-bold text-gray-900">{tv(detailsModalCar.fuel)}</p>
                   </div>
-                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
-                    <div className="flex items-center gap-2 text-amber-600 mb-1">
-                      <DoorClosed size={20} />
-                      <p className="text-xs text-gray-600">{t("details.doors")}</p>
+                  <div className="bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-0.5">
+                      <DoorClosed size={16} />
+                      <p className="text-[11px] text-gray-600">{t("details.doors")}</p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">{detailsModalCar.doors}</p>
+                    <p className="text-sm font-bold text-gray-900">{detailsModalCar.doors}</p>
                   </div>
                 </div>
 
                 {/* Equipment */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("details.features")}</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{t("details.features")}</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-1.5">
                     {detailsModalCar.features.map((feature: string, idx: number) => (
                       <div key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="text-amber-600" size={20} />
-                        <span className="text-gray-700">{tv(feature)}</span>
+                        <CheckCircle className="text-amber-600 flex-shrink-0" size={16} />
+                        <span className="text-gray-700 text-sm">{tv(feature)}</span>
                       </div>
                     ))}
                   </div>
-                </div>
-
-                {/* Price Box */}
-                <div className="mb-6 p-6 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl border-2 border-amber-400">
-                  <p className="text-sm text-gray-600 mb-2">{t("details.price")}</p>
-                  <p className="text-5xl font-bold text-amber-600">
-                    {detailsModalCar.price}€<span className="text-xl text-gray-600">{t("details.perDay")}</span>
-                  </p>
                 </div>
 
                 {/* CTA Button */}
@@ -709,7 +615,7 @@ export function Fleet() {
                     setDetailsModalCar(null);
                     handleBookNow(detailsModalCar);
                   }}
-                  className="w-full bg-amber-600 text-white py-4 rounded-xl hover:bg-amber-700 transition-all duration-300 font-bold text-lg tracking-wide shadow-lg shadow-amber-600/40 hover:shadow-2xl hover:shadow-amber-700/50 hover:-translate-y-1 relative overflow-hidden group"
+                  className="w-full bg-amber-600 text-white py-3 rounded-xl hover:bg-amber-700 transition-all duration-300 font-bold text-base tracking-wide shadow-lg shadow-amber-600/40 hover:shadow-2xl hover:shadow-amber-700/50 hover:-translate-y-1 relative overflow-hidden group"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     {t("details.bookNow")}

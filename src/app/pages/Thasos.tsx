@@ -30,28 +30,26 @@ const loukoumatesImage = "https://images.unsplash.com/photo-1711919432544-ba04b9
 const villageImage2 = "https://images.unsplash.com/photo-1596562308037-cd8fd6f61c5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlayUyMHZpbGxhZ2UlMjB0cmFkaXRpb2ναλυMHdoaXRlJTIwaG91c2VzfGVufDF8fHx8MTc3MjEzNzUxMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
 export function Thasos() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const cars = [
-    { id: "2",  name: "RENAULT TWINGO",         category: "A",  price: 35 },
-    { id: "3",  name: "TOYOTA AYGO",            category: "A",  price: 35 },
-    { id: "4",  name: "TOYOTA AYGO",        category: "A",  price: 38 },
-    { id: "5",  name: "HYUNDAI i10",            category: "B",  price: 40 },
-    { id: "6",  name: "KIA PICANTO",        category: "B",  price: 45 },
-    { id: "7",  name: "NISSAN MICRA",           category: "B",  price: 40 },
-    { id: "9",  name: "KIA PICANTO",  category: "B1", price: 55 },
-    { id: "10", name: "HYUNDAI i20",            category: "C",  price: 45 },
-    { id: "11", name: "PEUGEOT 208",            category: "C",  price: 45 },
-    { id: "13", name: "RENAULT CLIO",           category: "C",  price: 50 },
-    { id: "14", name: "DACIA SANDERO",          category: "C",  price: 45 },
-    { id: "18", name: "MG3",                    category: "C",  price: 48 },
-    { id: "15", name: "FIAT DOBLO",             category: "D",  price: 55 },
-    { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  price: 65 },
-    { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", price: 75 },
-    { id: "19", name: "MG ZS MAX",              category: "G2", price: 70 },
-    { id: "20", name: "NISSAN JUKE",            category: "G2", price: 70 },
-    { id: "21", name: "MG3 HYBRID+",            category: "G2", price: 75 },
+    { id: "3",  name: "TOYOTA AYGO",            category: "A",  roadType: "onlyRoad"        as const },
+    { id: "4",  name: "TOYOTA AYGO",            category: "A",  roadType: "onlyRoad"        as const },
+    { id: "5",  name: "HYUNDAI i10",            category: "B",  roadType: "onlyRoad"        as const },
+    { id: "6",  name: "KIA PICANTO",            category: "B",  roadType: "onlyRoad"        as const },
+    { id: "7",  name: "NISSAN MICRA",           category: "B",  roadType: "onlyRoad"        as const },
+    { id: "9",  name: "KIA PICANTO",            category: "B1", roadType: "onlyRoad"        as const },
+    { id: "10", name: "HYUNDAI i20",            category: "C",  roadType: "onlyRoad"        as const },
+    { id: "11", name: "PEUGEOT 208",            category: "C",  roadType: "onlyRoad"        as const },
+    { id: "13", name: "RENAULT CLIO",           category: "C",  roadType: "onlyRoad"        as const },
+    { id: "18", name: "MG MG3",                 category: "C",  roadType: "onlyRoad"        as const },
+    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const },
+    { id: "15", name: "FIAT DOBLO",             category: "D",  roadType: "onlyRoad"        as const },
+    { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  roadType: "beachOrMountain" as const },
+    { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", roadType: "beachOrMountain" as const },
+    { id: "19", name: "MG ZS MAX",              category: "G2", roadType: "forBeaches"      as const },
+    { id: "20", name: "NISSAN JUKE",            category: "G2", roadType: "forBeaches"      as const },
   ];
 
   const beaches = [
@@ -567,7 +565,7 @@ export function Thasos() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                to="/fleet"
+                to={`/${lang}/our-cars`}
                 className="inline-block bg-white text-amber-600 px-8 py-3 rounded-xl hover:bg-gray-100 transition-all duration-300 font-bold text-base tracking-wide shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
                 {t("thasos.cta.fleetBtn")} →

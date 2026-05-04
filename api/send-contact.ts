@@ -12,6 +12,8 @@ interface ContactPayload {
   name?: string;
   email?: string;
   phone?: string;
+  country?: string;
+  countryLabel?: string;
   message?: string;
   lang?: "el" | "en";
 }
@@ -41,6 +43,7 @@ function ownerHtml(d: ContactPayload): string {
           <tr><td style="padding:6px 0;color:#6b7280;width:140px">Όνομα:</td><td><strong>${esc(d.name)}</strong></td></tr>
           <tr><td style="padding:6px 0;color:#6b7280">Email:</td><td><a href="mailto:${esc(d.email)}" style="color:#d97706">${esc(d.email)}</a></td></tr>
           ${d.phone ? `<tr><td style="padding:6px 0;color:#6b7280">Τηλέφωνο:</td><td><a href="tel:${esc(d.phone)}" style="color:#d97706">${esc(d.phone)}</a></td></tr>` : ""}
+          ${d.countryLabel ? `<tr><td style="padding:6px 0;color:#6b7280">Χώρα:</td><td>${esc(d.countryLabel)}</td></tr>` : ""}
           <tr><td style="padding:6px 0;color:#6b7280">Γλώσσα πελάτη:</td><td>${langLabel}</td></tr>
         </table>
 

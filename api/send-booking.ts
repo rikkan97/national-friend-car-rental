@@ -13,6 +13,8 @@ interface BookingPayload {
   lastName?: string;
   email?: string;
   phone?: string;
+  country?: string;
+  countryLabel?: string;
   carName?: string;
   category?: string;
   pickupDate?: string;
@@ -20,7 +22,6 @@ interface BookingPayload {
   pickupLocation?: string;
   childSeats?: number;
   comments?: string;
-  total?: number;
   days?: number;
   lang?: "el" | "en";
 }
@@ -61,6 +62,7 @@ function ownerHtml(d: BookingPayload): string {
           <tr><td style="padding:6px 0;color:#6b7280;width:170px">Ονοματεπώνυμο:</td><td><strong>${esc(d.firstName)} ${esc(d.lastName)}</strong></td></tr>
           <tr><td style="padding:6px 0;color:#6b7280">Email:</td><td><a href="mailto:${esc(d.email)}" style="color:#d97706">${esc(d.email)}</a></td></tr>
           <tr><td style="padding:6px 0;color:#6b7280">Τηλέφωνο:</td><td><a href="tel:${esc(d.phone)}" style="color:#d97706">${esc(d.phone)}</a></td></tr>
+          ${d.countryLabel ? `<tr><td style="padding:6px 0;color:#6b7280">Χώρα:</td><td>${esc(d.countryLabel)}</td></tr>` : ""}
           <tr><td style="padding:6px 0;color:#6b7280">Γλώσσα πελάτη:</td><td>${langLabel}</td></tr>
         </table>
 
@@ -73,14 +75,6 @@ function ownerHtml(d: BookingPayload): string {
           <tr><td style="padding:6px 0;color:#6b7280">Σημείο Παραλαβής:</td><td>${esc(pickupLabel(d.pickupLocation, "el"))}</td></tr>
           <tr><td style="padding:6px 0;color:#6b7280">Παιδικά Καθίσματα:</td><td>${esc(d.childSeats ?? 0)}</td></tr>
         </table>
-
-        <div style="background:#fef3c7;border:2px solid #fcd34d;border-radius:8px;padding:14px 18px;margin-bottom:20px">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="color:#92400e;font-weight:600;letter-spacing:1px;font-size:12px;text-transform:uppercase">Σύνολο</span>
-            <span style="color:#b45309;font-size:22px;font-weight:700">€${esc(d.total)}</span>
-          </div>
-          <p style="margin:6px 0 0;font-size:11px;color:#78716c">Συμπεριλαμβάνεται ΦΠΑ 24% + Δημοτικός φόρος 2%</p>
-        </div>
 
         ${d.comments ? `
           <h2 style="font-size:14px;color:#b45309;margin:0 0 12px;letter-spacing:1px;text-transform:uppercase">Σχόλια</h2>
@@ -122,7 +116,6 @@ function customerHtml(d: BookingPayload): string {
           <tr><td style="padding:6px 0;color:#6b7280">${el ? "Παραλαβή:" : "Pick-up:"}</td><td>${esc(d.pickupDate)} · ${esc(pickupLabel(d.pickupLocation, el ? "el" : "en"))}</td></tr>
           <tr><td style="padding:6px 0;color:#6b7280">${el ? "Επιστροφή:" : "Return:"}</td><td>${esc(d.returnDate)}</td></tr>
           <tr><td style="padding:6px 0;color:#6b7280">${el ? "Διάρκεια:" : "Duration:"}</td><td>${esc(d.days)} ${el ? "ημέρες" : "days"}</td></tr>
-          <tr><td style="padding:6px 0;color:#6b7280">${el ? "Σύνολο:" : "Total:"}</td><td><strong style="color:#d97706;font-size:16px">€${esc(d.total)}</strong></td></tr>
         </table>
 
         <p style="font-size:13px;color:#6b7280;margin:0 0 18px;line-height:1.6">

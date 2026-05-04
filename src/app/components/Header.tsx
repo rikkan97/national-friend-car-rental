@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import logoImage from "figma:asset/0f6b906dfc0ff21309735e67dcdb8ae0299ae747.png";
+import logoImage from "../../assets/logo.png";
 import { useT } from "../../i18n/LanguageContext";
 import type { Lang } from "../../i18n/translations";
 
@@ -23,22 +23,26 @@ export function Header({ onBookingClick }: HeaderProps = {}) {
   const { t, lang, setLang } = useT();
 
   const navItems: NavItem[] = [
-    { key: "nav.home",          path: "/" },
-    { key: "nav.fleet",         path: "/fleet" },
-    { key: "nav.thasos",        path: "/thasos" },
-    { key: "nav.terms",         path: "/terms" },
+    { key: "nav.home",          path: `/${lang}` },
+    { key: "nav.fleet",         path: `/${lang}/our-cars` },
+    { key: "nav.thasos",        path: `/${lang}/thassos` },
+    { key: "nav.terms",         path: `/${lang}/rental-conditions` },
     { key: "nav.contact",       path: "/contact" },
     { key: "nav.accommodation", path: "https://egeo-travel.com", external: true },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === `/${lang}`) return location.pathname === "/" || location.pathname === `/${lang}`;
+    return location.pathname === path;
+  };
 
   const handleBookingClick = () => {
     if (onBookingClick) {
       onBookingClick();
     }
-    if (!onBookingClick && location.pathname !== "/fleet") {
-      window.location.href = "/fleet";
+    const fleetPath = `/${lang}/our-cars`;
+    if (!onBookingClick && location.pathname !== fleetPath) {
+      window.location.href = fleetPath;
     }
   };
 

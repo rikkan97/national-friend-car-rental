@@ -1,15 +1,16 @@
 import { motion, AnimatePresence } from "motion/react";
-import { X, Car, User, Mail, Phone, MapPin, Baby, Calendar as CalendarIcon, CheckCircle2, AlertCircle } from "lucide-react";
+import { X, Car, User, Mail, Phone, MapPin, Baby, Calendar as CalendarIcon, CheckCircle2, AlertCircle, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Calendar } from "./Calendar";
 import { DateRange } from "react-day-picker";
 import { useT } from "../../i18n/LanguageContext";
+import { COUNTRIES, countryLabel } from "../utils/countries";
 
 interface BookingFormProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedCar: { id: string; name: string; price: number } | null;
-  cars: { id: string; name: string; category: string; price: number }[];
+  selectedCar: { id: string; name: string } | null;
+  cars: { id: string; name: string; category: string; roadType: "onlyRoad" | "beachOrMountain" | "forBeaches" }[];
 }
 
 export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormProps) {
@@ -23,6 +24,7 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
     email: "",
     phone: "",
     pickupLocation: "Λιμενάρια",
+    country: "",
     childSeats: 0,
     comments: ""
   });
@@ -84,7 +86,6 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
     try {
       const selectedCarData = cars.find(c => c.id === formData.car);
       const days = calculateDays();
-      const total = calculateTotal();
 
       const res = await fetch("/api/send-booking", {
         method: "POST",
@@ -93,8 +94,8 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
           ...formData,
           carName: selectedCarData?.name ?? formData.car,
           category: selectedCarData?.category,
+          countryLabel: countryLabel(formData.country, "el"),
           days,
-          total,
           lang,
         }),
       });
@@ -122,16 +123,6 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
     return diffDays;
   };
 
-  const calculateTotal = () => {
-    const days = calculateDays();
-    if (days === 0 || !formData.car) return 0;
-    const car = cars.find(c => c.id === formData.car);
-    if (!car) return 0;
-    const carPrice = car.price * days;
-    const childSeatsPrice = formData.childSeats * 2 * days;
-    return carPrice + childSeatsPrice;
-  };
-
   const emailValid = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(formData.email.trim());
   const phoneDigits = formData.phone.replace(/\D/g, "");
   const phoneValid = phoneDigits.length > 0;
@@ -143,7 +134,8 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
     formData.lastName.trim().length > 0 &&
     emailValid &&
     phoneValid &&
-    !!formData.pickupLocation;
+    !!formData.pickupLocation &&
+    !!formData.country;
 
   return (
     <AnimatePresence>
@@ -211,7 +203,7 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
                     <option value="">{t("bookingForm.pickCar")}</option>
                     {cars.map(car => (
                       <option key={car.id} value={car.id}>
-                        {car.name} - {car.category} (€{car.price}{t("home.popular.perDay")})
+                        {car.name} - {car.category} ({t(`fleet.roadType.${car.roadType}`)})
                       </option>
                     ))}
                   </select>
@@ -331,23 +323,45 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
                   </div>
                 </div>
 
-                {/* Pickup Location */}
-                <div>
-                  <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                    <MapPin size={18} className="text-amber-600" />
-                    {t("bookingFormExt.pickupLocLabel")}
-                  </label>
-                  <select
-                    name="pickupLocation"
-                    required
-                    value={formData.pickupLocation}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900"
-                  >
-                    <option value="Λιμενάρια">{t("bookingFormExt.pickupLimenaria")}</option>
-                    <option value="Λιμάνι Θάσου">{t("bookingFormExt.pickupPort")}</option>
-                    <option value="Κατάλυμα">{t("bookingFormExt.pickupDelivery")}</option>
-                  </select>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Pickup Location */}
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                      <MapPin size={18} className="text-amber-600" />
+                      {t("bookingFormExt.pickupLocLabel")}
+                    </label>
+                    <select
+                      name="pickupLocation"
+                      required
+                      value={formData.pickupLocation}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-white border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900"
+                    >
+                      <option value="Λιμενάρια">{t("bookingFormExt.pickupLimenaria")}</option>
+                      <option value="Λιμάνι Θάσου">{t("bookingFormExt.pickupPort")}</option>
+                      <option value="Κατάλυμα">{t("bookingFormExt.pickupDelivery")}</option>
+                    </select>
+                  </div>
+
+                  {/* Country */}
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                      <Globe size={18} className="text-amber-600" />
+                      {t("bookingFormExt.countryLabel")}
+                    </label>
+                    <select
+                      name="country"
+                      required
+                      value={formData.country}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-white border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-gray-900"
+                    >
+                      <option value="">{t("bookingFormExt.countryPH")}</option>
+                      {COUNTRIES.map((c) => (
+                        <option key={c.code} value={c.code}>{c[lang]}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 {/* Child Seats */}
@@ -381,34 +395,6 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
                     placeholder={t("bookingFormExt.commentsPH")}
                   />
                 </div>
-
-                {/* Price Summary */}
-                {calculateDays() > 0 && formData.car && (
-                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 border-2 border-amber-300 rounded-xl p-4">
-                    <h3 className="font-bold text-amber-700 mb-3">{t("bookingFormExt.summary")}</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between text-gray-700">
-                        <span>{t("bookingFormExt.sumDays")}</span>
-                        <span className="font-semibold">{calculateDays()}</span>
-                      </div>
-                      <div className="flex justify-between text-gray-700">
-                        <span>{t("bookingFormExt.sumCar")}</span>
-                        <span className="font-semibold">€{cars.find(c => c.id === formData.car)?.price} x {calculateDays()}</span>
-                      </div>
-                      {formData.childSeats > 0 && (
-                        <div className="flex justify-between text-gray-700">
-                          <span>{t("bookingFormExt.sumChildSeats")} ({formData.childSeats}):</span>
-                          <span className="font-semibold">€{formData.childSeats * 2} x {calculateDays()}</span>
-                        </div>
-                      )}
-                      <div className="border-t border-amber-300 pt-2 flex justify-between text-lg">
-                        <span className="font-bold text-amber-700">{t("bookingFormExt.sumTotal")}</span>
-                        <span className="font-bold text-amber-700">€{calculateTotal()}</span>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-2">{t("bookingFormExt.sumVat")}</p>
-                    </div>
-                  </div>
-                )}
 
                 {status === "error" && (
                   <div className="flex items-start gap-3 p-4 rounded-lg bg-red-50 border border-red-200">
