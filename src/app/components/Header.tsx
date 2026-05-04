@@ -233,10 +233,10 @@ export function Header({ onBookingClick }: HeaderProps = {}) {
                       key={item.path}
                       to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block px-4 py-3 rounded-xl transition-all duration-300 font-bold text-sm tracking-wide ${
+                      className={`block px-4 py-3 rounded-xl transition-all duration-300 font-bold text-sm tracking-wide border ${
                         isActive(item.path)
-                          ? "bg-amber-600 text-white shadow-lg shadow-amber-600/40"
-                          : "text-gray-700 hover:bg-amber-50 hover:text-amber-600"
+                          ? "bg-amber-50 text-amber-700 border-amber-300"
+                          : "text-gray-700 border-transparent hover:bg-amber-50 hover:text-amber-600"
                       }`}
                     >
                       {t(item.key)}

@@ -178,7 +178,7 @@ export function Home() {
       <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-16 sm:py-24">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 sm:pt-28 sm:pb-24">
         <div className="absolute inset-0">
           <img
             src={heroImage}
@@ -291,7 +291,7 @@ export function Home() {
             </button>
 
             {/* Stage */}
-            <div className="relative flex items-center justify-center min-h-[720px] sm:min-h-[760px] overflow-hidden">
+            <div className="relative flex items-center justify-center min-h-[640px] sm:min-h-[760px] overflow-hidden">
               {popularCars.map((car, idx) => {
                 let off = idx - activeIdx;
                 const half = popularCount / 2;
@@ -299,7 +299,7 @@ export function Home() {
                 else if (off < -half) off += popularCount;
                 const isActive = off === 0;
                 const isVisible = Math.abs(off) <= 1;
-                const offsetX = isMobile ? 200 : 420;
+                const offsetX = isMobile ? 170 : 420;
                 return (
                   <motion.div
                     key={car.id}
@@ -313,16 +313,16 @@ export function Home() {
                     transition={{ type: "spring", stiffness: 220, damping: 28 }}
                     style={{ pointerEvents: isVisible ? "auto" : "none" }}
                     onClick={() => { if (!isActive && isVisible) setActiveIdx(idx); }}
-                    className={`absolute w-[340px] sm:w-[440px] ${!isActive && isVisible ? "cursor-pointer" : ""}`}
+                    className={`absolute w-[290px] sm:w-[440px] ${!isActive && isVisible ? "cursor-pointer" : ""}`}
                   >
                     <div className="bg-white rounded-2xl overflow-hidden ring-1 ring-amber-200/60 shadow-[0_10px_30px_-10px_rgba(245,158,11,0.4),_0_30px_60px_-18px_rgba(120,80,20,0.3)]">
                       {/* Image */}
                       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                         <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
-                        <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-amber-700 border border-amber-300 shadow-md px-2.5 py-1.5 rounded-full text-[10px] font-bold tracking-wide uppercase whitespace-nowrap pointer-events-none">
+                        <div className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-amber-700 border border-amber-300 shadow-md px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-wide uppercase whitespace-nowrap pointer-events-none max-w-[45%] truncate">
                           {t(`fleet.roadType.${car.roadType}`)}
                         </div>
-                        <div className="absolute top-3 right-3 bg-gradient-to-br from-amber-500 to-amber-600 text-white px-3 py-1 rounded-full shadow-lg shadow-amber-600/30 text-[10px] font-bold tracking-[0.15em] uppercase pointer-events-none">
+                        <div className="absolute top-2.5 right-2.5 bg-gradient-to-br from-amber-500 to-amber-600 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg shadow-amber-600/30 text-[9px] sm:text-[10px] font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase pointer-events-none max-w-[45%] truncate">
                           {categoryLabel[car.category] ?? car.category}
                         </div>
                       </div>
