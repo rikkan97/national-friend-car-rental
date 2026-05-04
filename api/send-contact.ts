@@ -89,8 +89,8 @@ function customerHtml(d: ContactPayload): string {
 
         <div style="border-top:1px solid #fde68a;padding-top:16px;font-size:13px;color:#78716c;line-height:1.7">
           ${el ? "Με εκτίμηση," : "Kind regards,"}<br/>
-          <strong style="color:#111">National Friend Car Rental</strong><br/>
-          ${el ? "Λιμενάρια, Θάσος" : "Limenaria, Thassos"}<br/>
+          <strong style="color:#111">${el ? "Αντώνης Αντωνίου" : "Antonis Antoniou"}</strong><br/>
+          National Friend Car Rental · ${el ? "Λιμενάρια, Θάσος" : "Limenaria, Thassos"}<br/>
           ${COMPANY_PHONE} · ${COMPANY_MOBILE}<br/>
           <a href="mailto:info@national-friend.gr" style="color:#d97706">info@national-friend.gr</a>
         </div>
