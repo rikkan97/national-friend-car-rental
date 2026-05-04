@@ -305,9 +305,10 @@ export function Home() {
               <ChevronRight size={24} strokeWidth={2.5} />
             </button>
 
-            {/* Stage */}
+            {/* Stage — 3D coverflow */}
             <div
               className="relative flex items-center justify-center min-h-[640px] sm:min-h-[760px] overflow-hidden touch-pan-y select-none"
+              style={{ perspective: 1400 }}
               onTouchStart={onCarouselTouchStart}
               onTouchEnd={onCarouselTouchEnd}
             >
@@ -318,19 +319,24 @@ export function Home() {
                 else if (off < -half) off += popularCount;
                 const isActive = off === 0;
                 const isVisible = Math.abs(off) <= 1;
-                const offsetX = isMobile ? 170 : 420;
+                const offsetX = isMobile ? 150 : 360;
                 return (
                   <motion.div
                     key={car.id}
                     animate={{
                       x: off * offsetX,
-                      scale: isActive ? 1 : 0.85,
-                      opacity: isVisible ? (isActive ? 1 : 0.5) : 0,
+                      rotateY: off * -28,
+                      z: isActive ? 0 : -180,
+                      scale: isActive ? 1 : 0.92,
+                      opacity: isVisible ? (isActive ? 1 : 0.55) : 0,
                       zIndex: isActive ? 30 : 20 - Math.abs(off),
-                      filter: isActive ? "blur(0px)" : "blur(1.5px)",
                     }}
-                    transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ pointerEvents: isVisible ? "auto" : "none" }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                      pointerEvents: isVisible ? "auto" : "none",
+                      transformStyle: "preserve-3d",
+                      transformOrigin: "center center",
+                    }}
                     onClick={() => { if (!isActive && isVisible) setActiveIdx(idx); }}
                     className={`absolute w-[290px] sm:w-[440px] ${!isActive && isVisible ? "cursor-pointer" : ""}`}
                   >
