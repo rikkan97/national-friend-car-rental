@@ -165,7 +165,7 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2 sm:p-4"
           >
-            <div className="bg-white border border-amber-200 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] overflow-y-auto flex flex-col">
+            <div className="bg-white border border-amber-200 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[calc(100svh-1rem)] sm:max-h-[90vh] overflow-y-auto overscroll-contain flex flex-col">
               {/* Header */}
               <div className="sticky top-0 bg-amber-600 text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-t-2xl z-10">
                 <h2 className="text-lg sm:text-2xl font-bold">{t("bookingForm.title")}</h2>
@@ -194,7 +194,7 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
                 </div>
               ) : (
               /* Form */
-              <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-5 sm:space-y-6">
+              <form onSubmit={handleSubmit} className="p-4 sm:p-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] sm:pb-6 space-y-5 sm:space-y-6">
                 {/* Car Selection */}
                 <div>
                   <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
