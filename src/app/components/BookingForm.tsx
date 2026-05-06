@@ -40,6 +40,14 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // Lock body scroll while modal is open (prevents the second scrollbar on mobile)
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [isOpen]);
+
   // Sync dateRange -> formData pickupDate/returnDate (ISO yyyy-mm-dd)
   useEffect(() => {
     const toISO = (d?: Date) => (d ? d.toISOString().split("T")[0] : "");
@@ -155,9 +163,9 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2 sm:p-4"
           >
-            <div className="bg-white border border-amber-200 rounded-2xl shadow-2xl max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div className="bg-white border border-amber-200 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[calc(100vh-1rem)] sm:max-h-[90vh] overflow-y-auto flex flex-col">
               {/* Header */}
               <div className="sticky top-0 bg-amber-600 text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-t-2xl z-10">
                 <h2 className="text-lg sm:text-2xl font-bold">{t("bookingForm.title")}</h2>

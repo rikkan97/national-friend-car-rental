@@ -198,7 +198,7 @@ export function Home() {
           <img
             src={heroImage}
             alt="Car Rental"
-            className="w-full h-full object-cover opacity-110 blur-sm scale-110"
+            className="w-full h-full object-cover opacity-110 blur-[2px] sm:blur-sm scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#F5F1E8]/85 via-[#F5F1E8]/70 to-[#F5F1E8]/85" />
         </div>

@@ -199,6 +199,30 @@ export function Terms() {
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{t("terms.liabTitle")}</h2>
             </div>
+
+            {/* Included waivers */}
+            <p className="text-gray-700 mb-6 leading-relaxed text-base">
+              {t("terms.waiversIntro")}
+            </p>
+            <div className="space-y-4 mb-10">
+              {[
+                { title: t("terms.cdwTitle"), desc: t("terms.cdwDesc") },
+                { title: t("terms.paiTitle"), desc: t("terms.paiDesc") },
+                { title: t("terms.twTitle"),  desc: t("terms.twDesc") },
+              ].map((waiver, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-7 h-7 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                    <Shield className="text-white" size={14} />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-base">{waiver.title}</div>
+                    <div className="text-gray-700 text-base leading-relaxed">{waiver.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Renter obligations */}
             <p className="text-gray-700 mb-8 leading-relaxed text-base">
               {t("terms.liabDesc")}
             </p>
