@@ -204,7 +204,7 @@ export function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F5F1E8] sm:bg-gradient-to-b sm:from-black/15 sm:via-black/10 sm:to-black/25" />
         </div>
 
-        <div className="relative sm:absolute sm:inset-0 sm:z-10 sm:flex sm:items-center px-4 -mt-12 sm:mt-0 pb-8 sm:pb-0">
+        <div className="relative sm:absolute sm:inset-0 sm:z-10 sm:flex sm:items-center px-4 -mt-52 sm:mt-0 pb-8 sm:pb-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
