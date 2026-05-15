@@ -44,7 +44,7 @@ export function Thasos() {
     { id: "11", name: "PEUGEOT 208",            category: "C",  roadType: "onlyRoad"        as const },
     { id: "13", name: "RENAULT CLIO",           category: "C",  roadType: "onlyRoad"        as const },
     { id: "18", name: "MG MG3",                 category: "C",  roadType: "onlyRoad"        as const },
-    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const, transmission: "Αυτόματο" },
+    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "onlyRoad"        as const, transmission: "Αυτόματο" },
     { id: "15", name: "FIAT DOBLO",             category: "D",  roadType: "onlyRoad"        as const },
     { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  roadType: "beachOrMountain" as const },
     { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", roadType: "beachOrMountain" as const },

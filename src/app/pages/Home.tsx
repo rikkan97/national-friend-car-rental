@@ -60,7 +60,7 @@ export function Home() {
     { id: "11", name: "PEUGEOT 208",            category: "C",  roadType: "onlyRoad"        as const },
     { id: "13", name: "RENAULT CLIO",           category: "C",  roadType: "onlyRoad"        as const },
     { id: "18", name: "MG MG3",                 category: "C",  roadType: "onlyRoad"        as const },
-    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const, transmission: "Αυτόματο" },
+    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "onlyRoad"        as const, transmission: "Αυτόματο" },
     { id: "15", name: "FIAT DOBLO",             category: "D",  roadType: "onlyRoad"        as const },
     { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  roadType: "beachOrMountain" as const },
     { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", roadType: "beachOrMountain" as const },
@@ -193,18 +193,18 @@ export function Home() {
       <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative sm:min-h-screen flex flex-col sm:block sm:items-center sm:justify-center overflow-hidden pt-24 sm:pt-32 sm:pb-24">
+      <section className="relative sm:min-h-screen flex flex-col sm:block sm:items-center sm:justify-center overflow-hidden pt-0 sm:pt-32 sm:pb-24">
         {/* Mobile: photo as a clean banner up top */}
-        <div className="relative sm:absolute sm:inset-0 h-[55vh] sm:h-auto">
+        <div className="relative sm:absolute sm:inset-0 h-[42vh] sm:h-auto">
           <img
             src={heroImage}
             alt="National Friend Car Rental — Λιμενάρια Θάσος"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-bottom sm:object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F5F1E8] sm:bg-gradient-to-b sm:from-black/15 sm:via-black/10 sm:to-black/25" />
         </div>
 
-        <div className="relative sm:absolute sm:inset-0 sm:z-10 sm:flex sm:items-center px-4 -mt-52 sm:mt-0 pb-8 sm:pb-0">
+        <div className="relative sm:absolute sm:inset-0 sm:z-10 sm:flex sm:items-center px-4 -mt-20 sm:mt-0 pb-8 sm:pb-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
