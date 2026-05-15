@@ -193,54 +193,55 @@ export function Home() {
       <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
-        <div className="absolute inset-0">
+      <section className="relative sm:min-h-screen flex flex-col sm:block sm:items-center sm:justify-center overflow-hidden pt-24 sm:pt-32 sm:pb-24">
+        {/* Mobile: photo as a clean banner up top */}
+        <div className="relative sm:absolute sm:inset-0 h-[55vh] sm:h-auto">
           <img
             src={heroImage}
             alt="National Friend Car Rental — Λιμενάρια Θάσος"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F5F1E8] sm:bg-gradient-to-b sm:from-black/15 sm:via-black/10 sm:to-black/25" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4">
+        <div className="relative sm:absolute sm:inset-0 sm:z-10 sm:flex sm:items-center px-4 -mt-12 sm:mt-0 pb-8 sm:pb-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="max-w-2xl mx-auto"
+            className="max-w-2xl mx-auto sm:mx-0 sm:ml-[4%] md:ml-[6%] lg:ml-[8%] sm:max-w-md md:max-w-lg lg:max-w-xl"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl bg-white/85 backdrop-blur-xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.4)] ring-1 ring-white/60 border border-white/50 p-6 sm:p-10 md:p-12 text-center">
+            <div className="relative rounded-2xl sm:rounded-3xl bg-white sm:bg-white/85 sm:backdrop-blur-xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.25)] sm:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.4)] ring-1 ring-amber-200/40 sm:ring-white/60 border border-amber-100 sm:border-white/50 p-6 sm:p-8 md:p-10 text-center sm:text-left">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex items-center justify-center gap-3 mb-5"
+                className="flex items-center justify-center sm:justify-start gap-3 mb-5"
               >
                 <div className="h-px w-10 sm:w-12 bg-amber-600" />
                 <span className="text-amber-700 tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs uppercase font-semibold">{t("home.hero.eyebrow")}</span>
-                <div className="h-px w-10 sm:w-12 bg-amber-600" />
+                <div className="h-px w-10 sm:w-12 bg-amber-600 sm:hidden" />
               </motion.div>
 
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-5 sm:mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 sm:mb-6 leading-tight">
                 <span className="text-amber-600">{t("home.hero.brand1")}</span>
                 <br />
                 <span className="text-gray-900">{t("home.hero.brand2")}</span>
               </h1>
 
-              <div className="h-px w-16 sm:w-20 bg-amber-600/60 mb-6 sm:mb-8 mx-auto" />
+              <div className="h-px w-16 sm:w-20 bg-amber-600/60 mb-6 sm:mb-8 mx-auto sm:mx-0" />
 
-              <div className="space-y-3 sm:space-y-4 mb-7 sm:mb-9 text-left sm:text-center">
-                <p className="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed font-medium">{t("home.hero.para1")}</p>
-                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">{fillYears(t("home.hero.para2"))}</p>
-                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">{t("home.hero.para3")}</p>
+              <div className="space-y-3 sm:space-y-4 mb-7 sm:mb-9 text-left">
+                <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-medium">{t("home.hero.para1")}</p>
+                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{fillYears(t("home.hero.para2"))}</p>
+                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{t("home.hero.para3")}</p>
               </div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
               >
                 <button
                   onClick={() => navigate(`/${lang}/our-cars`)}
