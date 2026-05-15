@@ -25,12 +25,12 @@ export function Contact() {
     { id: "5",  name: "HYUNDAI i10",            category: "B",  roadType: "onlyRoad"        as const },
     { id: "6",  name: "KIA PICANTO",            category: "B",  roadType: "onlyRoad"        as const },
     { id: "7",  name: "NISSAN MICRA",           category: "B",  roadType: "onlyRoad"        as const },
-    { id: "9",  name: "KIA PICANTO",            category: "B1", roadType: "onlyRoad"        as const },
+    { id: "9",  name: "KIA PICANTO",            category: "B1", roadType: "onlyRoad"        as const, transmission: "Αυτόματο" },
     { id: "10", name: "HYUNDAI i20",            category: "C",  roadType: "onlyRoad"        as const },
     { id: "11", name: "PEUGEOT 208",            category: "C",  roadType: "onlyRoad"        as const },
     { id: "13", name: "RENAULT CLIO",           category: "C",  roadType: "onlyRoad"        as const },
     { id: "18", name: "MG MG3",                 category: "C",  roadType: "onlyRoad"        as const },
-    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const },
+    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const, transmission: "Αυτόματο" },
     { id: "15", name: "FIAT DOBLO",             category: "D",  roadType: "onlyRoad"        as const },
     { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  roadType: "beachOrMountain" as const },
     { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", roadType: "beachOrMountain" as const },
@@ -206,7 +206,7 @@ export function Contact() {
                     <div>
                       <h3 className="font-bold text-amber-600 mb-2">{t("contact.hours")}</h3>
                       <p className="text-gray-700 font-semibold">{t("contact.daysRange")}</p>
-                      <p className="text-gray-600">09:00 - 22:30</p>
+                      <p className="text-gray-600">09:30 - 22:30</p>
                     </div>
                   </div>
                 </div>

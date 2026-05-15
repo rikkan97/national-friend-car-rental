@@ -10,7 +10,7 @@ interface BookingFormProps {
   isOpen: boolean;
   onClose: () => void;
   selectedCar: { id: string; name: string } | null;
-  cars: { id: string; name: string; category: string; roadType: "onlyRoad" | "beachOrMountain" | "forBeaches" }[];
+  cars: { id: string; name: string; category: string; roadType: "onlyRoad" | "beachOrMountain" | "forBeaches"; transmission?: string }[];
 }
 
 export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormProps) {
@@ -211,7 +211,7 @@ export function BookingForm({ isOpen, onClose, selectedCar, cars }: BookingFormP
                     <option value="">{t("bookingForm.pickCar")}</option>
                     {cars.map(car => (
                       <option key={car.id} value={car.id}>
-                        {car.name} - {car.category} ({t(`fleet.roadType.${car.roadType}`)})
+                        {car.name}{car.transmission === "Αυτόματο" ? ` - ${t("details.automatic")}` : ""} - {car.category} ({t(`fleet.roadType.${car.roadType}`)})
                       </option>
                     ))}
                   </select>

@@ -55,12 +55,12 @@ export function Home() {
     { id: "5",  name: "HYUNDAI i10",            category: "B",  roadType: "onlyRoad"        as const },
     { id: "6",  name: "KIA PICANTO",            category: "B",  roadType: "onlyRoad"        as const },
     { id: "7",  name: "NISSAN MICRA",           category: "B",  roadType: "onlyRoad"        as const },
-    { id: "9",  name: "KIA PICANTO",            category: "B1", roadType: "onlyRoad"        as const },
+    { id: "9",  name: "KIA PICANTO",            category: "B1", roadType: "onlyRoad"        as const, transmission: "Αυτόματο" },
     { id: "10", name: "HYUNDAI i20",            category: "C",  roadType: "onlyRoad"        as const },
     { id: "11", name: "PEUGEOT 208",            category: "C",  roadType: "onlyRoad"        as const },
     { id: "13", name: "RENAULT CLIO",           category: "C",  roadType: "onlyRoad"        as const },
     { id: "18", name: "MG MG3",                 category: "C",  roadType: "onlyRoad"        as const },
-    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const },
+    { id: "21", name: "MG MG3 HYBRID+",         category: "C1", roadType: "forBeaches"      as const, transmission: "Αυτόματο" },
     { id: "15", name: "FIAT DOBLO",             category: "D",  roadType: "onlyRoad"        as const },
     { id: "16", name: "DACIA DUSTER 4x2",       category: "G",  roadType: "beachOrMountain" as const },
     { id: "17", name: "SUZUKI JIMNY 4x4",       category: "G1", roadType: "beachOrMountain" as const },
@@ -193,14 +193,14 @@ export function Home() {
       <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="Car Rental"
-            className="w-full h-full object-cover opacity-110 blur-[2px] sm:blur-sm scale-110"
+            alt="National Friend Car Rental — Λιμενάρια Θάσος"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F5F1E8]/85 via-[#F5F1E8]/70 to-[#F5F1E8]/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/25" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4">
@@ -208,54 +208,55 @@ export function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-2xl mx-auto"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center justify-center gap-3 mb-6"
-            >
-              <div className="h-px w-12 bg-amber-600" />
-              <span className="text-amber-700 tracking-[0.3em] text-xs uppercase font-medium">{t("home.hero.eyebrow")}</span>
-              <div className="h-px w-12 bg-amber-600" />
-            </motion.div>
+            <div className="relative rounded-2xl sm:rounded-3xl bg-white/85 backdrop-blur-xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.4)] ring-1 ring-white/60 border border-white/50 p-6 sm:p-10 md:p-12 text-center">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex items-center justify-center gap-3 mb-5"
+              >
+                <div className="h-px w-10 sm:w-12 bg-amber-600" />
+                <span className="text-amber-700 tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs uppercase font-semibold">{t("home.hero.eyebrow")}</span>
+                <div className="h-px w-10 sm:w-12 bg-amber-600" />
+              </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 text-gray-900">
-              <span className="text-amber-600">{t("home.hero.brand1")}</span>
-              <br />
-              <span className="text-gray-900">{t("home.hero.brand2")}</span>
-            </h1>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-5 sm:mb-6 leading-tight">
+                <span className="text-amber-600">{t("home.hero.brand1")}</span>
+                <br />
+                <span className="text-gray-900">{t("home.hero.brand2")}</span>
+              </h1>
 
-            <div className="h-px w-20 bg-amber-600/60 mb-8 mx-auto" />
+              <div className="h-px w-16 sm:w-20 bg-amber-600/60 mb-6 sm:mb-8 mx-auto" />
 
-            {/* Description text — minimalist, no box */}
-            <div className="space-y-5 mb-10 max-w-2xl mx-auto">
-              <p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed font-medium drop-shadow-sm">{t("home.hero.para1")}</p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed drop-shadow-sm">{fillYears(t("home.hero.para2"))}</p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed drop-shadow-sm">{t("home.hero.para3")}</p>
+              <div className="space-y-3 sm:space-y-4 mb-7 sm:mb-9 text-left sm:text-center">
+                <p className="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed font-medium">{t("home.hero.para1")}</p>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">{fillYears(t("home.hero.para2"))}</p>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">{t("home.hero.para3")}</p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+              >
+                <button
+                  onClick={() => navigate(`/${lang}/our-cars`)}
+                  className="group inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:bg-amber-700 transition-all duration-300 font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-amber-600/40 hover:shadow-2xl hover:shadow-amber-700/50 hover:-translate-y-0.5"
+                >
+                  <span>{t("home.viewAllFleet")}</span>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button
+                  onClick={() => navigate('/contact')}
+                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-amber-500 text-amber-700 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-600 hover:text-white hover:border-amber-600 transition-all duration-300 font-bold text-sm sm:text-base tracking-wide shadow-md hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5"
+                >
+                  <span>{t("nav.contact")}</span>
+                </button>
+              </motion.div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
-            >
-              <button
-                onClick={() => navigate(`/${lang}/our-cars`)}
-                className="group inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-8 py-4 rounded-xl hover:bg-amber-700 transition-all duration-300 font-bold text-base tracking-wide shadow-lg shadow-amber-600/40 hover:shadow-2xl hover:shadow-amber-700/50 hover:-translate-y-0.5"
-              >
-                <span>{t("home.viewAllFleet")}</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => navigate('/contact')}
-                className="inline-flex items-center justify-center gap-2 bg-white border-2 border-amber-500 text-amber-700 px-8 py-4 rounded-xl hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-600 hover:text-white hover:border-amber-600 transition-all duration-300 font-bold text-base tracking-wide shadow-md hover:shadow-xl hover:shadow-amber-500/40 hover:-translate-y-0.5"
-              >
-                <span>{t("nav.contact")}</span>
-              </button>
-            </motion.div>
           </motion.div>
         </div>
 

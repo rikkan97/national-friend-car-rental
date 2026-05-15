@@ -70,7 +70,7 @@ export function Footer() {
                 </div>
                 <div className="text-sm">
                   <p className="text-gray-700 font-semibold">{t("footer.monSun")}</p>
-                  <p className="text-gray-600">09:00 - 22:30</p>
+                  <p className="text-gray-600">09:30 - 22:30</p>
                 </div>
               </div>
             </div>
