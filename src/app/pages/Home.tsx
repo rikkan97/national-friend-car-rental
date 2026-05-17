@@ -12,7 +12,7 @@ import jukeImg from "../../assets/cars/juke.webp";
 import clioImg from "../../assets/cars/clio.webp";
 import peugeot208Img from "../../assets/cars/peugeot-208.webp";
 import mgZsImg from "../../assets/cars/zs.webp";
-import heroImage from "../../assets/hero-home.webp";
+import heroImage from "../../assets/hero-car.jpg";
 
 type RoadType = "onlyRoad" | "beachOrMountain" | "forBeaches";
 
@@ -193,45 +193,45 @@ export function Home() {
       <Header onBookingClick={() => setBookingOpen(true)} />
 
       {/* Hero Section */}
-      <section className="relative sm:min-h-screen flex flex-col sm:block sm:items-center sm:justify-center overflow-hidden pt-0 sm:pt-32 sm:pb-24">
+      <section className="relative sm:min-h-screen flex flex-col sm:block sm:items-center sm:justify-center pt-0 sm:pt-32 sm:pb-24">
         {/* Mobile: photo as a clean banner up top */}
-        <div className="relative sm:absolute sm:inset-0 h-[42vh] sm:h-auto">
+        <div className="relative sm:absolute sm:inset-0 h-[42vh] sm:h-auto overflow-hidden">
           <img
             src={heroImage}
             alt="National Friend Car Rental — Λιμενάρια Θάσος"
-            className="w-full h-full object-cover object-bottom sm:object-center"
+            className="w-full h-full object-cover object-bottom sm:object-center scale-105 sm:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F5F1E8] sm:bg-gradient-to-b sm:from-black/15 sm:via-black/10 sm:to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F5F1E8] sm:bg-gradient-to-b sm:from-black/10 sm:via-[#F5F1E8]/0 sm:to-[#F5F1E8]" />
         </div>
 
-        <div className="relative sm:absolute sm:inset-0 sm:z-10 sm:flex sm:items-center px-4 -mt-20 sm:mt-0 pb-8 sm:pb-0">
+        <div className="relative sm:absolute sm:inset-x-0 sm:bottom-0 sm:z-10 sm:flex sm:justify-center px-4 -mt-20 sm:mt-0 pb-8 sm:pb-0 sm:translate-y-[40%]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="max-w-2xl mx-auto sm:mx-0 sm:ml-[4%] md:ml-[6%] lg:ml-[8%] sm:max-w-md md:max-w-lg lg:max-w-xl"
+            className="relative w-full max-w-2xl mx-auto sm:max-w-2xl md:max-w-3xl"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl bg-white sm:bg-white/85 sm:backdrop-blur-xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.25)] sm:shadow-[0_20px_70px_-15px_rgba(0,0,0,0.4)] ring-1 ring-amber-200/40 sm:ring-white/60 border border-amber-100 sm:border-white/50 p-6 sm:p-8 md:p-10 text-center sm:text-left">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white sm:bg-white/55 sm:backdrop-blur-2xl shadow-[0_20px_70px_-15px_rgba(0,0,0,0.25)] sm:shadow-[0_30px_90px_-20px_rgba(0,0,0,0.35)] ring-1 ring-white/40 sm:ring-white/50 border border-white/30 sm:border-white/40 p-6 sm:p-10 md:p-12 text-center">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex items-center justify-center sm:justify-start gap-3 mb-5"
+                className="flex items-center justify-center gap-3 mb-5"
               >
-                <div className="h-px w-10 sm:w-12 bg-amber-600" />
+                <div className="h-px w-10 sm:w-14 bg-amber-600" />
                 <span className="text-amber-700 tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs uppercase font-semibold">{t("home.hero.eyebrow")}</span>
-                <div className="h-px w-10 sm:w-12 bg-amber-600 sm:hidden" />
+                <div className="h-px w-10 sm:w-14 bg-amber-600" />
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 sm:mb-6 leading-tight">
-                <span className="text-amber-600">{t("home.hero.brand1")}</span>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight">
+                <span className="bg-gradient-to-br from-amber-500 to-amber-700 bg-clip-text text-transparent">{t("home.hero.brand1")}</span>
                 <br />
                 <span className="text-gray-900">{t("home.hero.brand2")}</span>
               </h1>
 
-              <div className="h-px w-16 sm:w-20 bg-amber-600/60 mb-6 sm:mb-8 mx-auto sm:mx-0" />
+              <div className="h-px w-16 sm:w-24 bg-gray-400 mb-6 sm:mb-8 mx-auto" />
 
-              <div className="space-y-3 sm:space-y-4 mb-7 sm:mb-9 text-left">
+              <div className="space-y-3 sm:space-y-4 mb-7 sm:mb-9 max-w-xl mx-auto">
                 <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-medium">{t("home.hero.para1")}</p>
                 <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{fillYears(t("home.hero.para2"))}</p>
                 <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{t("home.hero.para3")}</p>
@@ -241,7 +241,7 @@ export function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
               >
                 <button
                   onClick={() => navigate(`/${lang}/our-cars`)}
@@ -273,7 +273,7 @@ export function Home() {
       </section>
 
       {/* Popular Choices Section */}
-      <section className="relative py-28 bg-white overflow-hidden">
+      <section className="relative pt-32 sm:pt-[26rem] pb-28 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
