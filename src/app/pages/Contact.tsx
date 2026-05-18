@@ -206,7 +206,7 @@ export function Contact() {
                     <div>
                       <h3 className="font-bold text-amber-600 mb-2">{t("contact.hours")}</h3>
                       <p className="text-gray-700 font-semibold">{t("contact.daysRange")}</p>
-                      <p className="text-gray-600">09:30 - 22:30</p>
+                      <p className="text-gray-600">09:30 - 21:30</p>
                     </div>
                   </div>
                 </div>
